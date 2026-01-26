@@ -1,0 +1,212 @@
+@import url("https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;700&display=swap");
+
+:root{
+  --inch: 96px;
+
+  /* 设计基准（不缩放） */
+  --design-w0: calc(15 * var(--inch));        /* 1440px */
+  --page-m0:   calc(0.45 * var(--inch));    /* 42px */
+  --gutter0:   calc(0.25 * var(--inch));      /* 24px */
+  --col0:      calc(2.625 * var(--inch));     /* 252px */
+
+  /* 第一行到灰色块距离（基准） */
+  --row-gap-top0: calc(0.05 * var(--inch));
+  --gap-meta-to-next0: calc(0.6737 * var(--inch));
+
+  /* 缩放系数（JS 会写入） */
+  --s: 1;
+
+  /* 顶栏实际高度（JS 会写入，给锚点留空） */
+  --top-fixed-h: 0px;
+
+  /* 缩放后的派生尺寸 */
+  --design-w: calc(var(--design-w0) * var(--s));
+  --page-m:   calc(var(--page-m0)   * var(--s));
+  --gutter:   calc(var(--gutter0)   * var(--s));
+  --col:      calc(var(--col0)      * var(--s));
+
+  --row-gap-top:       calc(var(--row-gap-top0) * var(--s));
+  --gap-meta-to-next:  calc(var(--gap-meta-to-next0) * var(--s));
+
+  /* 字号：15pt≈20px，12pt≈16px（再乘缩放） */
+
+  --fs-15: calc(20px * var(--s));      /* 15pt */
+  --fs-12: calc(16px * var(--s));      /* 12pt */
+  --fs-10: calc(13.33px * var(--s));    /*  10pt */
+  --fs-8:  calc(10.67px * var(--s));   /* 8pt  */
+
+  --lh-15: calc(20px * var(--s)); /* 15pt 行距 */
+  --lh-16: calc(21.33px * var(--s)); /* 16pt 行距 */
+  --lh-18: calc(24px * var(--s)); /* ✅ 18pt 行距 */
+
+  --scroll-m0: calc(0.1875 * var(--inch)); /* 灰色块离顶端的基准 margin */
+  --scroll-m:  calc(var(--scroll-m0) * var(--s));
+
+
+
+}
+
+*{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  font-family:"Albert Sans", system-ui, sans-serif;
+  color:#111;
+  background:#ffffff;
+}
+
+/* ===== 固定顶栏：透明底，不缩放（因为尺寸本身已缩放） ===== */
+.top-fixed{
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: var(--design-w);
+  padding: var(--page-m);
+  background: transparent;
+  z-index: 999;
+}
+
+.top{
+  display:grid;
+  grid-template-columns: repeat(5, var(--col));
+  column-gap: var(--gutter);
+  align-items:start;
+}
+
+.brand{
+  grid-column:1;
+  font-weight:700;
+  font-size: var(--fs-12);
+  line-height:1.15;
+  color:#e7018a;
+}
+
+.topnav{
+  grid-column:5;
+  position:relative;
+  font-weight:700;
+  font-size: var(--fs-12);
+  line-height:1.15;
+  height: 1.2em;
+}
+
+.topnav a{
+  position:absolute;
+  text-decoration:none;
+  color:#e7018a;
+}
+.topnav .work{ left:0; top:0; }
+.topnav .about{ left: calc(var(--col) * 0.5); top:0; }
+
+/* 顶栏占位（JS 写入高度） */
+.top-spacer{ height: 0px; }
+
+/* ===== 页面主体：不再 transform ===== */
+.stage{
+  width:100%;
+  display:flex;
+  justify-content:center;
+}
+
+.page-sizer{
+  width: var(--design-w);
+}
+
+.page{
+  width: var(--design-w);
+  padding: var(--page-m);
+}
+
+/* 主体 */
+.main{
+  margin-top: var(--row-gap-top);
+  display:grid;
+  grid-template-columns: repeat(5, var(--col));
+  column-gap: var(--gutter);
+  align-items:start;
+}
+
+/* 左侧列表 */
+.left{
+  grid-column:1;
+  font-size: var(--fs-12);
+  font-weight:400;
+  line-height: var(--lh-18);  /* ✅ 上下行距 = 16pt */
+  font-variant-numeric: tabular-nums;
+}
+
+.project-list{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+.plink{
+  display:grid;
+  grid-template-columns: 2ch auto;
+  column-gap: 2.2ch;      /* tab stop 视觉 */
+  align-items:baseline;
+  text-decoration:none;
+  color:#111;
+}
+
+.plink .num{ text-align:left; } /* 0 对齐 */
+.plink .txt{ text-align:left; white-space:nowrap; }
+
+/* 右侧项目（第4、5列） */
+.right{
+  grid-column: 4 / 6;
+  font-size: var(--fs-10);
+  font-weight:400;
+  line-height:1.25;
+}
+
+/* 关键：让锚点滚动时自动留出 顶栏 + 缩放后 margin */
+.item{
+  scroll-margin-top: calc(var(--top-fixed-h) + var(--scroll-m));
+  display:grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--gutter);              /* 01 与灰块之间 = 1 gutter */
+  margin-bottom: var(--gap-meta-to-next);
+}
+
+.item-no{
+  text-align:right;
+  font-variant-numeric: tabular-nums;
+}
+.item-no .no{
+  display:inline-block;
+  width:2ch;
+  text-align:right;
+}
+
+/* 灰色块：3:2 */
+.media{
+  width:100%;
+  aspect-ratio: 3 / 2;
+  background:#8c8c8c;
+}
+
+.meta{ margin-top: calc(10px * var(--s)); }
+
+.bottom{
+  margin-top: calc(2 * var(--inch) * var(--s));
+  font-size: var(--fs-10);
+  font-weight:400;
+  line-height:1.2;
+}
+
+.media{
+  width:100%;
+  aspect-ratio: 3 / 2;
+  background:#8c8c8c;
+  overflow:hidden;           /* 防止图片溢出 */
+}
+
+.media img{
+  width:100%;
+  height:100%;
+  object-fit:cover;          /* 关键：不变形，裁切 */
+  display:block;
+}
