@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
 
 :root{
   --inch: 96px;
@@ -81,6 +81,12 @@ body{
   line-height:1.15;
   color:#e7018a;
 }
+
+.brand a{
+  text-decoration:none;
+  color:inherit;
+}
+
 
 .topnav{
   grid-column:5;
@@ -190,12 +196,20 @@ body{
 
 .meta{ margin-top: calc(10px * var(--s)); }
 
+
 .bottom{
   margin-top: calc(2 * var(--inch) * var(--s));
   font-size: var(--fs-10);
   font-weight:400;
   line-height:1.2;
+
+  display: grid;
+  grid-template-columns: repeat(5, var(--col));
+  column-gap: var(--gutter);
 }
+
+.footer-inner{ grid-column: 1; }
+
 
 .media{
   width:100%;
@@ -209,4 +223,140 @@ body{
   height:100%;
   object-fit:cover;          /* 关键：不变形，裁切 */
   display:block;
+}
+
+
+.end-spacer{
+  grid-column: 4 / 6;          /* 和右侧内容同一列 */
+  width: 100%;
+  aspect-ratio: 3 / 0.666;         /* 等同一个灰色块高度 */
+}
+
+
+/* ===== Project Page (same 5-col grid, same margins/gutter) ===== */
+
+.brand a{
+  text-decoration:none;
+  color:inherit;
+}
+
+/* 14pt 行距（全页统一） */
+:root{
+  --lh-14: calc(18.67px * var(--s)); /* 14pt ≈ 18.67px */
+  --fs-14: calc(18.67px * var(--s)); /* 14pt */
+}
+
+/* 项目页主网格：五列 */
+.project-main{
+  margin-top: var(--row-gap-top);
+  display:grid;
+  grid-template-columns: repeat(5, var(--col));
+  column-gap: var(--gutter);
+  align-items:start;
+}
+
+/* 顶部区域：左图 + 右侧信息（同一行起始高度） */
+.project-hero{
+  grid-column: 1 / 6;
+  display:grid;
+  grid-template-columns: repeat(5, var(--col));
+  column-gap: var(--gutter);
+  align-items:start;
+}
+
+/* ✅ 所有灰色块：都占左起四列，3:2 */
+.proj-media{
+  grid-column: 1 / 5;      /* 1-4 列 */
+  aspect-ratio: 3 / 2;
+  overflow:hidden;
+}
+
+/* 灰色块占位（之后换成 img 也没问题） */
+.ph{
+  width:100%;
+  height:100%;
+  background:#8c8c8c;
+}
+
+/* ✅ 右侧信息：第 5 列左对齐，行距 14pt */
+.proj-side{
+  grid-column: 5 / 6;
+  text-align:left;
+  line-height: var(--lh-14);
+}
+
+/* ✅ 标题：14pt，Medium */
+.proj-title{
+  font-size: var(--fs-14);
+  font-weight: 500; /* medium */
+  line-height: var(--lh-14);
+}
+
+/* 右侧其它文字：同样 14pt 行距（字号你若也要 14pt，就保留这一行 font-size） */
+.proj-sub{
+  font-size: var(--fs-10);     /* 如果你也想 14pt，就改成 var(--fs-14) */
+  line-height: var(--lh-14);
+  font-weight: 400;
+}
+
+/* ✅ 多张图堆叠：用同样 5 列网格；每块占 1-4 列；块间距=1 gutter */
+.proj-media-stack{
+  grid-column: 1 / 6;
+  margin-top: var(--gutter);
+
+  display: grid;
+  grid-template-columns: repeat(5, var(--col));
+  column-gap: var(--gutter);
+  row-gap: var(--gutter);
+}
+
+/* ✅ 所有灰色块：占左起四列 3:2（在 grid 里才会生效） */
+.proj-media{
+  grid-column: 1 / 5;
+  aspect-ratio: 3 / 1.8;
+  overflow: hidden;
+}
+
+.proj-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* 关键：裁切而不是拉伸 */
+  display: block;
+}
+
+/* 仅拉开标题与副标题之间的距离 */
+.proj-title + .proj-sub{
+  margin-top: calc(8px * var(--s));  /* 你可以试 4 / 6 / 8 */
+}
+
+
+/* ✅ 段落：只占左起两列（1-2列），与灰色块间隔 = 1 gutter；行距 14pt；不 hyphen；尽量避免 widow */
+.proj-text{
+  grid-column: 1 / 3;          /* 左起两列 */
+  margin-top: var(--gutter);
+
+  font-size: var(--fs-10);     /* 如果段落也要 14pt，就改成 var(--fs-14) */
+  line-height: var(--lh-14);
+
+  hyphens: none;
+  -webkit-hyphens: none;
+  -ms-hyphens: none;
+
+  orphans: 2;
+  widows: 2;
+  text-wrap: pretty;
+}
+
+/* 只针对这一张：容器用 flex 把图片居中 */
+.proj-media.fit-h{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 图片按框高度适配（不裁切） */
+.proj-media.fit-h img{
+  height: 100%;
+  width: auto;
+  object-fit: contain;
 }
