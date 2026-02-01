@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Digital Detox 2025 — MJ Studio</title>
+    <link rel="stylesheet" href="../style.css" />
+
+    <style>
+        body {
+            background: #181818;
+        }
+
+        /* 强力覆盖：把 project 区域里所有文字都拉回你想要的颜色 */
+        .project-main,
+        .project-main *,
+        .bottom,
+        .bottom *,
+        .proj-side,
+        .proj-side * {
+            color: #eaeaea !important;
+            /* 你现在背景很深，建议用浅色文字 */
+            -webkit-text-fill-color: #eaeaea !important;
+            /* 防止 style.css 用了 text-fill-color */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 顶部固定第一行：与主页一致 -->
+    <div class="top-fixed" id="topFixed">
+        <header class="top">
+            <div class="brand">
+                <a href="../index.html">MJ Studio</a>
+            </div>
+            <nav class="topnav">
+                <a class="work" href="../index.html">Work</a>
+                <a class="about" href="../index.html">About</a>
+            </nav>
+        </header>
+    </div>
+
+    <!-- 顶部占位（JS 会写入高度） -->
+    <div class="top-spacer" id="topSpacer"></div>
+
+    <!-- 页面主体：与主页一致 -->
+    <div class="stage">
+        <div class="page-sizer" id="pageSizer">
+            <div class="page" id="page">
+
+                <main class="project-main">
+
+                    <!-- Hero：左四列图 + 右一列信息 -->
+                    <section class="project-hero">
+
+                        <div class="proj-media">
+                            <img src="../images/digital_detox/DD_01.jpeg" alt="Digital Detox Image 01">
+                        </div>
+
+                        <div class="proj-side">
+                            <div class="proj-title">Digital Detox</div>
+                            <div class="proj-sub">Exhibition Design, 2025</div>
+                            <div class="proj-sub">Special Thanks to Tyrone Drake</div>
+                        </div>
+
+                        <!-- 其余 19 张 -->
+                        <section class="proj-media-stack">
+
+                            <div class="proj-media"><img src="../images/digital_detox/DD_02.jpeg"
+                                    alt="Digital Detox Image 02"></div>
+                            <!-- <div class="proj-media"><img src="../images/digital_detox/DD_03.jpeg"
+                                    alt="Digital Detox Image 03"></div> -->
+                            <div class="proj-media"><img src="../images/digital_detox/DD_04.jpeg"
+                                    alt="Digital Detox Image 04"></div>
+                            <div class="proj-media"><img src="../images/digital_detox/DD_05.jpeg"
+                                    alt="Digital Detox Image 05"></div>
+                            <div class="proj-media"><img src="../images/digital_detox/DD_06.jpeg"
+                                    alt="Digital Detox Image 06"></div>
+                            <div class="proj-media"><img src="../images/digital_detox/DD_07.jpeg"
+                                    alt="Digital Detox Image 07"></div>
+                            <div class="proj-media"><img src="../images/digital_detox/DD_08.jpeg"
+                                    alt="Digital Detox Image 08"></div>
+                            <div class="proj-media"><img src="../images/digital_detox/DD_09.jpeg"
+                                    alt="Digital Detox Image 09"></div>
+                            <div class="proj-media"><img src="../images/digital_detox/DD_10.jpeg"
+                                    alt="Digital Detox Image 10"></div>
+
+                            <div class="proj-media"><img src="../images/digital_detox/DD_11.jpeg"
+                                    alt="Digital Detox Image 11"></div>
+                            <div class="proj-media"><img src="../images/digital_detox/DD_12.jpeg"
+                                    alt="Digital Detox Image 12"></div>
+                            <div class="proj-media"><img src="../images/digital_detox/DD_13.jpeg"
+                                    alt="Digital Detox Image 13"></div>
+                            <div class="proj-media"><img src="../images/digital_detox/DD_14.jpeg"
+                                    alt="Digital Detox Image 14"></div>
+                            <div class="proj-media"><img src="../images/digital_detox/DD_15.jpeg"
+                                    alt="Digital Detox Image 15"></div>
+                            <div class="proj-media"><img src="../images/digital_detox/DD_16.jpeg"
+                                    alt="Digital Detox Image 16"></div>
+                            <div class="proj-media"><img src="../images/digital_detox/DD_17.jpeg"
+                                    alt="Digital Detox Image 17"></div>
+                            <div class="proj-media"><img src="../images/digital_detox/DD_18.jpeg"
+                                    alt="Digital Detox Image 18"></div>
+                            <div class="proj-media"><img src="../images/digital_detox/DD_19.jpeg"
+                                    alt="Digital Detox Image 19"></div>
+                            <div class="proj-media"><img src="../images/digital_detox/DD_20.jpeg"
+                                    alt="Digital Detox Image 20"></div>
+
+                        </section>
+
+                        <!-- 可选文案：不需要就整段删掉 -->
+                        <section class="proj-text">
+                            <p>
+                                Digital Detox is an immersive typographic narrative installation 
+                                inspired by Vaporwave aesthetics and digital culture. Through glitchy 
+                                visuals, nostalgic icons, and interactive typography, the installation 
+                                guides audiences through a journey, from seamless digital comfort 
+                                to alienation and critical awakening. By transforming familiar childhood 
+                                memories and digital symbols into physical experiences, the project 
+                                encourages reflection on surveillance, consumerism, and the emotional 
+                                impact of life inside algorithm-driven systems.
+
+                            </p>
+                            <div class="end-spacer"></div>
+                        </section>
+
+                </main>
+
+                <footer class="bottom">
+                    Mabel Chen © 2026
+                </footer>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="../scale.js"></script>
+</body>
+
+</html>

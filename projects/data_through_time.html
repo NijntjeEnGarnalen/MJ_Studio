@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Data Through Time: Tracing Path — MJ Studio</title>
+    <link rel="stylesheet" href="../style.css" />
+
+    <style>
+        body {
+            background: #f5f5f5;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- 顶部固定第一行：与主页一致 -->
+    <div class="top-fixed" id="topFixed">
+        <header class="top">
+            <div class="brand">
+                <a href="../index.html">MJ Studio</a>
+            </div>
+            <nav class="topnav">
+                <a class="work" href="../index.html">Work</a>
+                <a class="about" href="../index.html">About</a>
+            </nav>
+        </header>
+    </div>
+
+    <!-- 顶部占位（JS 会写入高度） -->
+    <div class="top-spacer" id="topSpacer"></div>
+
+    <!-- 页面主体：与主页一致 -->
+    <div class="stage">
+        <div class="page-sizer" id="pageSizer">
+            <div class="page" id="page">
+
+                <!-- 项目页内容：同样五列网格（CSS 里用 .project-main / .project-hero / .proj-media 等控制） -->
+                <main class="project-main">
+
+                    <!-- 第一行起始高度与主页 01 一致：依赖同样的 top-spacer + margin-top 变量 -->
+                    <section class="project-hero">
+
+                        <!-- 灰色块 01：占左起四列，3:2 -->
+                        <div class="proj-media">
+                            <img src="../images/data_through_time/DTT_01.png" alt="Data Through Time Image 01">
+                        </div>
+
+                        <!-- 右侧第 5 列：左对齐 -->
+                        <div class="proj-side">
+                            <div class="proj-title">Data Through Time: <br>Tracing Path</div>
+                            <div class="proj-sub">Exhibition Design, 2024</div>
+                        </div>
+
+                    </section>
+
+                    <!-- 灰色块 02–18：每块间隔 = 1 gutter；每块都和第一块同规格 -->
+                    <section class="proj-media-stack">
+
+                        <div class="proj-media">
+                            <img src="../images/data_through_time/DTT_02.png" alt="Data Through Time Image 02">
+                        </div>
+                        <div class="proj-media">
+                            <img src="../images/data_through_time/DTT_03.png" alt="Data Through Time Image 03">
+                        </div>
+                        <div class="proj-media">
+                            <img src="../images/data_through_time/DTT_04.png" alt="Data Through Time Image 04">
+                        </div>
+                        <div class="proj-media">
+                            <img src="../images/data_through_time/DTT_05.JPG" alt="Data Through Time Image 05">
+                        </div>
+                        <div class="proj-media">
+                            <img src="../images/data_through_time/DTT_06.JPG" alt="Data Through Time Image 06">
+                        </div>
+                        <div class="proj-media">
+                            <img src="../images/data_through_time/DTT_07.JPG" alt="Data Through Time Image 07">
+                        </div>
+                        <div class="proj-media">
+                            <img src="../images/data_through_time/DTT_08.JPG" alt="Data Through Time Image 08">
+                        </div>
+
+                    </section>
+
+
+                    <!-- 段落：只占左起两列；与灰色块间隔 = 1 gutter；无 hyphen；尽量 no widow（由 CSS 控制） -->
+                    <section class="proj-text">
+                        <p>
+                            The visual system blends retro aesthetics with modern minimalism, inspired by early digital
+                            designs. It features printer nozzle patterns and repetitive square motifs, symbolizing
+                            fragmented yet enduring data storage and memory chips.
+                            <br><br>
+                            The exhibition targets on nostalgic storage device enthusiasts, tech lovers, and curious
+                            younger audiences, using a chronological layout to connect fast-growing digital eras and
+                            inspire on how data storage has, is, and will shape our digital lives.
+                            <br><br>
+                            Featuring pixel-like elements, 45-degree angles, and a palette of neon hues against muted
+                            grays and blacks, the design evokes nostalgia for vintage hardware while maintaining a
+                            clean, contemporary look.
+
+                        </p>
+                        <div class="end-spacer"></div>
+                    </section>
+
+                </main>
+
+                <!-- 底部：与主页一致 -->
+                <footer class="bottom">
+                    Mabel Chen © 2026
+                </footer>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 缩放与顶栏占位同步：与主页一致 -->
+    <script src="../scale.js"></script>
+</body>
+
+</html>

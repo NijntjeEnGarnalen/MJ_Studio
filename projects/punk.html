@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Punk 2025 — MJ Studio</title>
+    <link rel="stylesheet" href="../style.css" />
+
+    <style>
+        body {
+            background: #191919;
+            /* pink: E87BB5 */
+        }
+
+        /* 强力覆盖：把 project 区域里所有文字都拉回你想要的颜色 */
+        .project-main,
+        .project-main *,
+        .bottom,
+        .bottom *,
+        .proj-side,
+        .proj-side * {
+            color: #eaeaea !important;
+            /* 你现在背景很深，建议用浅色文字 */
+            -webkit-text-fill-color: #eaeaea !important;
+            /* 防止 style.css 用了 text-fill-color */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 顶部固定第一行 -->
+    <div class="top-fixed" id="topFixed">
+        <header class="top">
+            <div class="brand">
+                <a href="../index.html">MJ Studio</a>
+            </div>
+            <nav class="topnav">
+                <a class="work" href="../index.html">Work</a>
+                <a class="about" href="../index.html">About</a>
+            </nav>
+        </header>
+    </div>
+
+    <!-- 顶部占位 -->
+    <div class="top-spacer" id="topSpacer"></div>
+
+    <!-- 页面主体 -->
+    <div class="stage">
+        <div class="page-sizer" id="pageSizer">
+            <div class="page" id="page">
+
+                <main class="project-main">
+
+                    <!-- Hero -->
+                    <section class="project-hero">
+
+                        <div class="proj-media">
+                            <img src="../images/punk/punk_01.JPG" alt="Punk Image 01">
+                        </div>
+
+                        <div class="proj-side">
+                            <div class="proj-title">Punk</div>
+                            <div class="proj-sub">Newspaper, 2025</div>
+                            <div class="proj-sub">Special Thanks to Brad Bartlett</div>
+                        </div>
+
+                    </section>
+
+                    <!-- 其余 6 张 -->
+                    <section class="proj-media-stack">
+
+                        <div class="proj-media">
+                            <img src="../images/punk/punk_02.png" alt="Punk Image 02">
+                        </div>
+
+                        <div class="proj-media">
+                            <img src="../images/punk/punk_03.png" alt="Punk Image 03">
+                        </div>
+
+                        <div class="proj-media">
+                            <img src="../images/punk/punk_04.png" alt="Punk Image 04">
+                        </div>
+
+                        <div class="proj-media">
+                            <img src="../images/punk/punk_05.png" alt="Punk Image 05">
+                        </div>
+
+                        <div class="proj-media">
+                            <img src="../images/punk/punk_06.png" alt="Punk Image 06">
+                        </div>
+
+
+                    </section>
+
+                    <!-- 可选文案 -->
+                    <section class="proj-text">
+                        <p>
+                            This project focuses on British punk culture, examining its 
+                            social background, unemployed youth, key figures, DIY ethos, 
+                            and the role of zines as tools for expression and distribution. 
+                            It also traces punk's conceptual connections to Dada and the Situationist 
+                            International, highlighting its critical stance toward authority and 
+                            mass culture. Rather than adopting a chaotic visual language, the 
+                            project uses a relatively rational typographic system to frame punk 
+                            as an intentional cultural and political movement. Pink is introduced 
+                            as a deliberate color choice, reflecting punk's history of provocation, 
+                            contradiction, and resistance to fixed meanings.
+
+                        </p>
+                        <div class="end-spacer"></div>
+                    </section>
+
+                </main>
+
+                <footer class="bottom">
+                    Mabel Chen © 2026
+                </footer>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="../scale.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>August — MJ Studio</title>
+  <link rel="stylesheet" href="../style.css" />
+
+  <style>
+    body {
+      background: #f9f9f9;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- 顶部固定第一行：与主页一致 -->
+  <div class="top-fixed" id="topFixed">
+    <header class="top">
+      <div class="brand">
+        <a href="../index.html">MJ Studio</a>
+      </div>
+      <nav class="topnav">
+        <a class="work" href="../index.html">Work</a>
+        <a class="about" href="../index.html">About</a>
+      </nav>
+    </header>
+  </div>
+
+  <!-- 顶部占位（JS 会写入高度） -->
+  <div class="top-spacer" id="topSpacer"></div>
+
+  <!-- 页面主体：与主页一致 -->
+  <div class="stage">
+    <div class="page-sizer" id="pageSizer">
+      <div class="page" id="page">
+
+        <!-- 项目页内容：同样五列网格（CSS 里用 .project-main / .project-hero / .proj-media 等控制） -->
+        <main class="project-main">
+
+          <!-- 第一行起始高度与主页 01 一致：依赖同样的 top-spacer + margin-top 变量 -->
+          <section class="project-hero">
+
+            <!-- 灰色块 01：占左起四列，3:2 -->
+            <div class="proj-media fit-h">
+              <img src="../images/August/August_01.png" alt="August Image 01">
+            </div>
+
+
+            <!-- 右侧第 5 列：左对齐 -->
+            <div class="proj-side">
+              <div class="proj-title">August</div>
+              <div class="proj-sub">Poster Design, 2024</div>
+              <div class="proj-sub"><em>"I miss being with you."</em></div>
+            </div>
+
+          </section>
+
+          <!-- 灰色块 02–18：每块间隔 = 1 gutter；每块都和第一块同规格 -->
+          <section class="proj-media-stack">
+
+
+
+
+
+
+          </section>
+
+
+          <!-- 段落：只占左起两列；与灰色块间隔 = 1 gutter；无 hyphen；尽量 no widow（由 CSS 控制） -->
+          <section class="proj-text">
+            <p>
+
+            </p>
+            <div class="end-spacer"></div>
+          </section>
+
+        </main>
+
+        <!-- 底部：与主页一致 -->
+        <footer class="bottom">
+          Mabel Chen © 2026
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 缩放与顶栏占位同步：与主页一致 -->
+  <script src="../scale.js"></script>
+</body>
+
+</html>
