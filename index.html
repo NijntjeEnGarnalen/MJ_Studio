@@ -1,10 +1,18 @@
 <!doctype html>
 <html lang="zh-CN">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>MJ Studio</title>
   <link rel="stylesheet" href="./style.css" />
+
+  <style>
+    body {
+      background: #ffffff;
+    }
+  </style>
+
 </head>
 
 <body>
@@ -12,7 +20,13 @@
   <!-- 固定在顶部的第一行 -->
   <div class="top-fixed" id="topFixed">
     <header class="top">
-      <div class="brand">MJ Studio</div>
+
+
+
+      <div class="brand">
+        <a href="/">MJ Studio</a>
+      </div>
+
       <nav class="topnav">
         <a class="work" href="#">Work</a>
         <a class="about" href="#">About</a>
@@ -32,23 +46,38 @@
 
           <aside class="left">
             <ul class="project-list">
-                <li><a class="plink" href="#proj-01" data-target="proj-01"><span class="num">01</span><span class="txt">Digital Detox</span></a></li>
-                <li><a class="plink" href="#proj-02" data-target="proj-02"><span class="num">02</span><span class="txt">Punk</span></a></li>
-                <li><a class="plink" href="#proj-03" data-target="proj-03"><span class="num">03</span><span class="txt">Random Glyph</span></a></li>
-                <li><a class="plink" href="#proj-04" data-target="proj-04"><span class="num">04</span><span class="txt">Visual Lexicon</span></a></li>
-                <li><a class="plink" href="#proj-05" data-target="proj-05"><span class="num">05</span><span class="txt">Harbor Freight Rebrand</span></a></li>
+              <li><a class="plink" href="#proj-01" data-target="proj-01"><span class="num">01</span><span
+                    class="txt">Digital Detox</span></a></li>
+              <li><a class="plink" href="#proj-02" data-target="proj-02"><span class="num">02</span><span
+                    class="txt">Punk</span></a></li>
+              <li><a class="plink" href="#proj-03" data-target="proj-03"><span class="num">03</span><span
+                    class="txt">Random Glyph</span></a></li>
+              <li><a class="plink" href="#proj-04" data-target="proj-04"><span class="num">04</span><span
+                    class="txt">Visual Lexicon</span></a></li>
+              <li><a class="plink" href="#proj-05" data-target="proj-05"><span class="num">05</span><span
+                    class="txt">Harbor Freight Rebrand</span></a></li>
 
-                <li><a class="plink" href="#proj-06" data-target="proj-06"><span class="num">06</span><span class="txt">Album Cover</span></a></li>
-                <li><a class="plink" href="#proj-07" data-target="proj-07"><span class="num">07</span><span class="txt">Kitbit</span></a></li>
-                <li><a class="plink" href="#proj-08" data-target="proj-08"><span class="num">08</span><span class="txt">Garden Diaries</span></a></li>
-                <li><a class="plink" href="#proj-09" data-target="proj-09"><span class="num">09</span><span class="txt">Data Through Time: Tracing Path</span></a></li>
-                <li><a class="plink" href="#proj-10" data-target="proj-10"><span class="num">10</span><span class="txt">Revived Pages</span></a></li>
+              <li><a class="plink" href="#proj-06" data-target="proj-06"><span class="num">06</span><span
+                    class="txt">Album Cover</span></a></li>
+              <li><a class="plink" href="#proj-07" data-target="proj-07"><span class="num">07</span><span
+                    class="txt">Kitbit</span></a></li>
+              <li><a class="plink" href="#proj-08" data-target="proj-08"><span class="num">08</span><span
+                    class="txt">Garden Diaries</span></a></li>
+              <li><a class="plink" href="#proj-09" data-target="proj-09"><span class="num">09</span><span
+                    class="txt">Data Through Time: Tracing Path</span></a></li>
+              <li><a class="plink" href="#proj-10" data-target="proj-10"><span class="num">10</span><span
+                    class="txt">Revived Pages</span></a></li>
 
-                <li><a class="plink" href="#proj-11" data-target="proj-11"><span class="num">11</span><span class="txt">Gatcha Box</span></a></li>
-                <li><a class="plink" href="#proj-12" data-target="proj-12"><span class="num">12</span><span class="txt">Roots of Tension</span></a></li>
-                <li><a class="plink" href="#proj-13" data-target="proj-13"><span class="num">13</span><span class="txt">Margin Notes</span></a></li>
-                <li><a class="plink" href="#proj-14" data-target="proj-14"><span class="num">14</span><span class="txt">August</span></a></li>
-                <li><a class="plink" href="#proj-15" data-target="proj-15"><span class="num">15</span><span class="txt">Abnormal Desire</span></a></li>
+              <li><a class="plink" href="#proj-11" data-target="proj-11"><span class="num">11</span><span
+                    class="txt">Gatcha Box</span></a></li>
+              <li><a class="plink" href="#proj-12" data-target="proj-12"><span class="num">12</span><span
+                    class="txt">Roots of Tension</span></a></li>
+              <li><a class="plink" href="#proj-13" data-target="proj-13"><span class="num">13</span><span
+                    class="txt">Margin Notes</span></a></li>
+              <li><a class="plink" href="#proj-14" data-target="proj-14"><span class="num">14</span><span
+                    class="txt">August</span></a></li>
+              <li><a class="plink" href="#proj-15" data-target="proj-15"><span class="num">15</span><span
+                    class="txt">Abnormal Desire</span></a></li>
             </ul>
 
 
@@ -58,23 +87,27 @@
           <section class="right">
 
             <article class="item" id="proj-01">
-                <div class="item-no"><span class="no">01</span></div>
-                <div class="card">
-                    <div class="media">
-                        <img src="images/DigitalDetox_Cover.jpeg" alt="Digital Detox Image">
-                    </div>
+              <div class="item-no"><span class="no">01</span></div>
+              <div class="card">
+                <div class="media">
+                  <a href="projects/digital_detox.html">
+                    <img src="images/DigitalDetox_Cover.jpeg" alt="Digital Detox Image">
+                  </a>
+                </div>
                 <div class="meta">
-                <div>Digital Detox, 2025</div>
+                  <div>Digital Detox, 2025</div>
                   <div>Exhibition Design</div>
                 </div>
               </div>
-            </article>  
+            </article>
 
             <article class="item" id="proj-02">
               <div class="item-no"><span class="no">02</span></div>
               <div class="card">
                 <div class="media">
+                  <a href="projects/punk.html">
                     <img src="images/Punk_Cover.png" alt="Punk Image">
+                  </a>
                 </div>
                 <div class="meta">
                   <div>Punk, 2025</div>
@@ -87,7 +120,9 @@
               <div class="item-no"><span class="no">03</span></div>
               <div class="card">
                 <div class="media">
+                  <a href="projects/random_glyph.html">
                     <img src="images/RandomGlyph_Cover.jpg" alt="Random Glyph Image">
+                  </a>
                 </div>
                 <div class="meta">
                   <div>Random Glyph, 2025</div>
@@ -100,7 +135,9 @@
               <div class="item-no"><span class="no">04</span></div>
               <div class="card">
                 <div class="media">
+                  <a href="projects/visual_lexicon.html">
                     <img src="images/Lexi_Cover.png" alt="Lexicon Image">
+                  </a>
                 </div>
                 <div class="meta">
                   <div>Visual Lexicon, 2025</div>
@@ -113,11 +150,13 @@
               <div class="item-no"><span class="no">05</span></div>
               <div class="card">
                 <div class="media">
+                  <a href="projects/harbor_freight.html">
                     <img src="images/HF_Cover.png" alt="Harbor Freight Rebrand Image">
+                  </a>
                 </div>
                 <div class="meta">
                   <div>Harbor Freight Rebrand, 2025</div>
-                  <div>Rebranding</div>
+                  <div>Branding</div>
                 </div>
               </div>
             </article>
@@ -126,7 +165,9 @@
               <div class="item-no"><span class="no">06</span></div>
               <div class="card">
                 <div class="media">
+                  <a href="projects/album_cover.html">
                     <img src="images/Album_Cover.png" alt="Album Cover Image">
+                  </a>
                 </div>
                 <div class="meta">
                   <div>Album Cover, 2024</div>
@@ -139,7 +180,9 @@
               <div class="item-no"><span class="no">07</span></div>
               <div class="card">
                 <div class="media">
+                  <a href="projects/kitbit.html">
                     <img src="images/Kitbit_Cover.png" alt="Kitbit Image">
+                  </a>
                 </div>
                 <div class="meta">
                   <div>Kitbit, 2024</div>
@@ -152,7 +195,9 @@
               <div class="item-no"><span class="no">08</span></div>
               <div class="card">
                 <div class="media">
+                  <a href="projects/garden_diaries.html">
                     <img src="images/GardenDiaries_Cover.JPG" alt="Garden Diaries Image">
+                  </a>
                 </div>
                 <div class="meta">
                   <div>Garden Diaries, 2024</div>
@@ -165,7 +210,9 @@
               <div class="item-no"><span class="no">09</span></div>
               <div class="card">
                 <div class="media">
+                  <a href="projects/data_through_time.html">
                     <img src="images/DTT_Cover.png" alt="DTT Image">
+                  </a>
                 </div>
                 <div class="meta">
                   <div>Data Through Time: Tracing Path, 2024</div>
@@ -178,7 +225,9 @@
               <div class="item-no"><span class="no">10</span></div>
               <div class="card">
                 <div class="media">
+                  <a href="projects/revived_pages.html">
                     <img src="images/RP_Cover.png" alt="Revived Pages Image">
+                  </a>
                 </div>
                 <div class="meta">
                   <div>Revived Pages, 2024</div>
@@ -191,7 +240,9 @@
               <div class="item-no"><span class="no">11</span></div>
               <div class="card">
                 <div class="media">
+                  <a href="projects/gatcha_box.html">
                     <img src="images/Gatcha_Cover.JPG" alt="Gatcha Box Image">
+                  </a>
                 </div>
                 <div class="meta">
                   <div>Gatcha Box, 2024</div>
@@ -204,7 +255,9 @@
               <div class="item-no"><span class="no">12</span></div>
               <div class="card">
                 <div class="media">
+                  <a href="projects/roots_of_tension.html">
                     <img src="images/RoT_Cover.png" alt="Roots of Tension Image">
+                  </a>
                 </div>
                 <div class="meta">
                   <div>Roots of Tension, 2024</div>
@@ -217,7 +270,9 @@
               <div class="item-no"><span class="no">13</span></div>
               <div class="card">
                 <div class="media">
+                  <a href="projects/margin_notes.html">
                     <img src="images/MN_Cover.JPG" alt="Margin Notes Image">
+                  </a>
                 </div>
                 <div class="meta">
                   <div>Margin Notes, 2024</div>
@@ -230,7 +285,9 @@
               <div class="item-no"><span class="no">14</span></div>
               <div class="card">
                 <div class="media">
+                  <a href="projects/august.html">
                     <img src="images/August_Cover.png" alt="August Image">
+                  </a>
                 </div>
                 <div class="meta">
                   <div>August, 2024</div>
@@ -243,7 +300,9 @@
               <div class="item-no"><span class="no">15</span></div>
               <div class="card">
                 <div class="media">
+                  <a href="projects/abnormal_desire.html">
                     <img src="images/AB_Cover.JPG" alt="Abnormal Desire Image">
+                  </a>
                 </div>
                 <div class="meta">
                   <div>Abnormal Desire, 2023</div>
@@ -251,14 +310,13 @@
                 </div>
               </div>
             </article>
-
+            <div class="end-spacer"></div>
           </section>
         </main>
 
         <footer class="bottom">
-          Mabel Chen © 2026
+          <div class="footer-inner">Mabel Chen © 2026</div>
         </footer>
-
       </div>
     </div>
   </div>
@@ -266,4 +324,5 @@
   <!-- 只保留这一份 JS -->
   <script src="./scale.js"></script>
 </body>
+
 </html>
