@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — MJ Studio</title>
+  <link rel="stylesheet" href="../style.css" />
+
+  <style>
+    body { background:#ffffff; }
+
+    /* ===== About page grid ===== */
+    .about-main{
+      margin-top: var(--row-gap-top);   /* same as index 01 */
+      display:grid;
+      grid-template-columns: repeat(5, var(--col));
+      column-gap: var(--gutter);
+      align-items:start;
+    }
+
+    /* ===== Images (same ratio as index) ===== */
+    .about-photo,
+    .about-photo-right{
+      width:100%;
+      aspect-ratio: 3 / 2;
+      background:#8c8c8c;
+      overflow:hidden;
+    }
+
+    .about-photo{ grid-column: 1 / 2; }
+    .about-photo-right{ grid-column: 5 / 6; }
+
+    .about-photo img,
+    .about-photo-right img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .about-photo-right.second{
+      margin-top: var(--gutter);
+    }
+
+    /* ===== Typography ===== */
+
+    /* 12pt / 15pt */
+    .about-bio,
+    .about-links,
+    .about-h{
+      font-size: var(--fs-12);
+      line-height: var(--lh-16);
+      font-weight: 400;
+      color:#111;
+    }
+
+    /* 10pt / 13pt */
+    .about-edu,
+    .about-exp{
+      font-size: var(--fs-10);
+      line-height: var(--lh-14);
+      font-weight: 400;
+      color:#111;
+    }
+
+    /* ===== Layout ===== */
+
+    .about-bio{
+      grid-column: 2 / 5;
+      margin: 0;
+    }
+
+    .about-links{
+      grid-column: 1 / 2;
+      margin-top: calc(var(--gutter) / 2); /* half vertical gutter */
+    }
+
+    .about-links a{
+      text-decoration:none;
+      color:#111;
+      display:block;
+    }
+    .about-links a:hover{ text-decoration:underline; }
+
+    .about-h{
+      margin: 0 0 calc(6px * var(--s)) 0;
+    }
+
+    .about-edu{
+      grid-column: 2 / 3;
+      margin-top: calc(var(--gutter) / 2);
+    }
+
+    .about-exp{
+      grid-column: 3 / 5;
+      margin-top: calc(var(--gutter) / 2);
+    }
+
+    .bottom{
+      margin-top: calc(2 * var(--inch) * var(--s));
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 顶部固定第一行 -->
+  <div class="top-fixed" id="topFixed">
+    <header class="top">
+      <div class="brand">
+        <a href="../index.html">MJ Studio</a>
+      </div>
+      <nav class="topnav">
+        <a class="index" href="../index.html">Index</a>
+        <a class="work" href="../work.html">Work</a>
+        <a class="about" href="../about.html">About</a>
+      </nav>
+    </header>
+  </div>
+
+  <div class="top-spacer" id="topSpacer"></div>
+
+  <div class="stage">
+    <div class="page-sizer">
+      <div class="page">
+
+        <main class="about-main">
+
+          <!-- Row 1 -->
+          <div class="about-photo">
+            <img src="./images/about_01.JPG" alt="Portrait 01">
+          </div>
+
+          <p class="about-bio">
+            My name is Mabel.<br>I am a designer interested in systems, narratives, and the emotional traces embedded in
+            everyday life. My work often begins with close observation of objects, environments, and behaviors and
+            translates these findings into visual forms and interactive experiences. Through research-driven design, I
+            explore how structure, memory, and interaction shape the way people perceive and engage with the world
+            around them.
+          </p>
+
+          <div class="about-photo-right">
+            <img src="./images/about_02.JPG" alt="Portrait 02">
+          </div>
+
+          <!-- Row 2 -->
+          <div class="about-links">
+            <a href="mailto:aestatis511@gmail.com">aestatis511@gmail.com</a>
+            <a href="#" target="_blank">LinkedIn</a>
+            <a href="#" target="_blank">Instagram</a>
+            <a href="#" target="_blank">Resume</a>
+          </div>
+
+          <div class="about-edu">
+            <div class="about-h">Education</div>
+
+            ArtCenter College of Design<br>
+            Sep. 2025 - July. 2027<br>
+            MFA in Graphic Design<br><br>
+
+            Peking University<br>
+            Sep. 2022 - July. 2024<br>
+            MTI in Japanese Translation<br><br>
+
+            East China Normal University<br>
+            Sep. 2017 - July. 2021<br>
+            BE in Software Engineering
+          </div>
+
+          <div class="about-exp">
+            <div class="about-h">Experience</div>
+
+            Shanghai Dagong Auction Co., Ltd.<br>
+            Apr. 2024 - Aug. 2024<br>
+            Director of Online Auction<br><br>
+
+            Shanghai Cangyuan Industrial Co., Ltd.<br>
+            Jan. 2024 - Apr. 2024<br>
+            Japanese Translation Intern<br><br>
+
+            Beijing Science and Technology Publishing Co., Ltd.<br>
+            Oct. 2023 - Dec. 2023<br>
+            Editorial Intern, Children's Department<br><br>
+
+            Shanghai Soar Information Technology Co., Ltd.<br>
+            Oct. 2021 - Dec. 2021<br>
+            Japanese Language Intern<br><br>
+
+            Shanghai Fuao Construction Technology Co., Ltd.<br>
+            Sep. 2020 - Dec. 2020<br>
+            Frontend Intern<br><br>
+
+            Shanghai Fanhua Auction Co., Ltd.<br>
+            Jul. 2017 - Aug. 2017<br>
+            Intern Supervisor
+          </div>
+
+          <div class="about-photo-right second">
+            <img src="./images/about_03.jpeg" alt="Portrait 03">
+          </div>
+
+        </main>
+
+        <footer class="bottom">
+          <div class="footer-inner">Mabel Chen © 2026</div>
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="../scale.js"></script>
+</body>
+</html>
