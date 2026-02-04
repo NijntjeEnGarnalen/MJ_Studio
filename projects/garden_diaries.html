@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Garden Diaries — MJ Studio</title>
+  <link rel="stylesheet" href="../style.css" />
+
+  <style>
+    body {
+      background: #dfdfdf;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- 顶部固定第一行：与主页一致 -->
+  <div class="top-fixed" id="topFixed">
+    <header class="top">
+      <div class="brand">
+        <a href="../index.html">MJ Studio</a>
+      </div>
+      <nav class="topnav">
+        <a class="index" href="/">Index</a>
+        <a class="work" href="/work.html">Work</a>
+        <a class="about" href="/about.html">About</a>
+      </nav>
+    </header>
+  </div>
+
+  <!-- 顶部占位（JS 会写入高度） -->
+  <div class="top-spacer" id="topSpacer"></div>
+
+  <!-- 页面主体：与主页一致 -->
+  <div class="stage">
+    <div class="page-sizer" id="pageSizer">
+      <div class="page" id="page">
+
+        <!-- 项目页内容：同样五列网格（CSS 里用 .project-main / .project-hero / .proj-media 等控制） -->
+        <main class="project-main">
+
+          <!-- 第一行起始高度与主页 01 一致：依赖同样的 top-spacer + margin-top 变量 -->
+          <section class="project-hero">
+
+            <!-- 灰色块 01：占左起四列，3:2 -->
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_01.JPG" alt="GD Image 01">
+            </div>
+
+            <!-- 右侧第 5 列：左对齐 -->
+            <div class="proj-side">
+              <div class="proj-title">Garden Diaries</div>
+              <div class="proj-sub">Publication Design, 2024</div>
+            </div>
+
+          </section>
+
+          <!-- 灰色块 02–18：每块间隔 = 1 gutter；每块都和第一块同规格 -->
+          <section class="proj-media-stack">
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_02.jpg" alt="GD Image 02">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_03.jpg" alt="GD Image 03">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_04.jpg" alt="GD Image 04">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_05.jpg" alt="GD Image 05">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_06.jpg" alt="GD Image 06">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_07.jpg" alt="GD Image 07">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_08.jpg" alt="GD Image 08">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_09.jpg" alt="GD Image 09">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_10.jpg" alt="GD Image 10">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_11.jpg" alt="GD Image 11">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_12.jpeg" alt="GD Image 12">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_13.jpeg" alt="GD Image 13">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_14.jpeg" alt="GD Image 14">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_15.jpeg" alt="GD Image 15">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_16.jpeg" alt="GD Image 16">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_17.jpeg" alt="GD Image 17">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_18.jpeg" alt="GD Image 18">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_19.JPG" alt="GD Image 19">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_20.JPG" alt="GD Image 20">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_21.JPG" alt="GD Image 21">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_22.JPG" alt="GD Image 22">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_23.JPG" alt="GD Image 23">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_24.JPG" alt="GD Image 24">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_25.JPG" alt="GD Image 25">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_26.JPG" alt="GD Image 26">
+            </div>
+
+            <div class="proj-media">
+              <img src="../images/garden_diaries/GD_27.JPG" alt="GD Image 27">
+            </div>
+
+
+
+
+
+          </section>
+
+
+          <!-- 段落：只占左起两列；与灰色块间隔 = 1 gutter；无 hyphen；尽量 no widow（由 CSS 控制） -->
+          <section class="proj-text">
+            <p>
+              Garden Diaries grew out of my ongoing observation of the flowerbeds in my residential community. I
+              documented plants across the seasons, recording how they shift in color, density, and presence over time.
+              The publication is structured as five small booklets: plant imagery is screen printed on translucent
+              tracing paper, while the inner pages print the ground—soil and pavement tiles—so the landscape reads in
+              layers. A string binds the five booklets together, threading them into a seasonal timeline.
+              <br><br>
+              Alongside the plants, I also observed human behavior in the same space. These observations became the
+              first booklet, produced through screen printing for its organic process and warmer, more tactile tone.
+              Different colors are used to mark different kinds of actions and encounters. The booklet includes
+              fragments from the COVID period, as well as chronological records sourced from Google Earth that document
+              the garden's transformation.
+              <br><br>
+              Memory serves as a thread, stringing together past recollections.
+              The chronological records come from Google Earth, documenting the transformation of the garden.
+              <br><br>
+              The binding repeats throughout—rope as a timeline, a physical cue that time is not only read but held. The
+              project closes with a set of small everyday events, edited into a compact folded zine that is easy to
+              carry and read.
+            </p>
+            <div class="end-spacer"></div>
+          </section>
+
+        </main>
+
+        <!-- 底部：与主页一致 -->
+        <footer class="bottom">
+          Mabel Chen © 2026
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 缩放与顶栏占位同步：与主页一致 -->
+  <script src="../scale.js"></script>
+</body>
+
+</html>

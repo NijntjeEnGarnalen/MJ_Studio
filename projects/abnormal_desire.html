@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Abnormal Desire — MJ Studio</title>
+  <link rel="stylesheet" href="../style.css" />
+
+  <style>
+    body {
+      background: #fdffef;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <!-- 顶部固定第一行：与主页一致 -->
+  <div class="top-fixed" id="topFixed">
+    <header class="top">
+      <div class="brand">
+        <a href="../index.html">MJ Studio</a>
+      </div>
+      <nav class="topnav">
+        <a class="index" href="/">Index</a>
+        <a class="work" href="/work.html">Work</a>
+        <a class="about" href="/about.html">About</a>
+      </nav>
+    </header>
+  </div>
+
+  <!-- 顶部占位（JS 会写入高度） -->
+  <div class="top-spacer" id="topSpacer"></div>
+
+  <!-- 页面主体：与主页一致 -->
+  <div class="stage">
+    <div class="page-sizer" id="pageSizer">
+      <div class="page" id="page">
+
+        <!-- 项目页内容：同样五列网格（CSS 里用 .project-main / .project-hero / .proj-media 等控制） -->
+        <main class="project-main">
+
+          <!-- 第一行起始高度与主页 01 一致：依赖同样的 top-spacer + margin-top 变量 -->
+          <section class="project-hero">
+
+            <!-- 灰色块 01：占左起四列，3:2 -->
+            <div class="proj-media">
+              <img src="../images/abnormal_desire/AB_01.JPG" alt="AB Image 01">
+            </div>
+
+            <!-- 右侧第 5 列：左对齐 -->
+            <div class="proj-side">
+              <div class="proj-title">Abnormal Desire</div>
+              <div class="proj-sub">Booklet, 2023</div>
+            </div>
+
+          </section>
+
+          <!-- 灰色块 02–18：每块间隔 = 1 gutter；每块都和第一块同规格 -->
+          <section class="proj-media-stack">
+
+            <div class="proj-media">
+              <img src="../images/abnormal_desire/AB_02.JPG" alt="AB Image 02">
+            </div>
+            <div class="proj-media">
+              <img src="../images/abnormal_desire/AB_03.jpg" alt="AB Image 03">
+            </div>
+            <div class="proj-media">
+              <img src="../images/abnormal_desire/AB_04.JPG" alt="AB Image 04">
+            </div>
+            <div class="proj-media">
+              <img src="../images/abnormal_desire/AB_05.JPG" alt="AB Image 05">
+            </div>
+            <div class="proj-media">
+              <img src="../images/abnormal_desire/AB_14.JPG" alt="AB Image 14">
+            </div>
+            <div class="proj-media">
+              <img src="../images/abnormal_desire/AB_06.JPG" alt="AB Image 06">
+            </div>
+            <div class="proj-media">
+              <img src="../images/abnormal_desire/AB_07.JPG" alt="AB Image 07">
+            </div>
+            <div class="proj-media">
+              <img src="../images/abnormal_desire/AB_08.JPG" alt="AB Image 08">
+            </div>
+            <div class="proj-media">
+              <img src="../images/abnormal_desire/AB_09.JPG" alt="AB Image 09">
+            </div>
+            <div class="proj-media">
+              <img src="../images/abnormal_desire/AB_10.JPG" alt="AB Image 10">
+            </div>
+            <div class="proj-media">
+              <img src="../images/abnormal_desire/AB_11.JPG" alt="AB Image 11">
+            </div>
+            
+
+           
+           
+
+          </section>
+
+
+          <!-- 段落：只占左起两列；与灰色块间隔 = 1 gutter；无 hyphen；尽量 no widow（由 CSS 控制） -->
+          <section class="proj-text">
+            <p>
+                This booklet was created for the Japanese film <em>Abnormal Desire</em>, 
+                written by Ryo Asai. The film presents an ensemble of characters, 
+                with water as a recurring motif that connects individual perspectives
+                and narratives. Reflecting this structure, the booklet is organized 
+                into distinct chapters, each unfolding through a different character's
+                point of view, allowing the stories to flow and intersect gradually.
+            </p>
+            <div class="end-spacer"></div>
+          </section>
+
+        </main>
+
+        <!-- 底部：与主页一致 -->
+        <footer class="bottom">
+          Mabel Chen © 2026
+        </footer>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- 缩放与顶栏占位同步：与主页一致 -->
+  <script src="../scale.js"></script>
+</body>
+
+</html>

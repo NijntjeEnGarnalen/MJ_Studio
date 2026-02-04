@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Album Cover — MJ Studio</title>
+    <link rel="stylesheet" href="../style.css" />
+
+    <style>
+        body {
+            background: #2b2b2b;
+        }
+
+        /* 强力覆盖：把 project 区域里所有文字都拉回你想要的颜色 */
+        .project-main,
+        .project-main *,
+        .bottom,
+        .bottom *,
+        .proj-side,
+        .proj-side * {
+            color: #eaeaea !important;
+            -webkit-text-fill-color: #eaeaea !important;
+            /* 防止 style.css 用了 text-fill-color */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- 顶部固定第一行：与主页一致 -->
+    <div class="top-fixed" id="topFixed">
+        <header class="top">
+            <div class="brand">
+                <a href="../index.html">MJ Studio</a>
+            </div>
+            <nav class="topnav">
+                <a class="index" href="/">Index</a>
+        <a class="work" href="/work.html">Work</a>
+                <a class="about" href="/about.html">About</a>
+            </nav>
+        </header>
+    </div>
+
+    <!-- 顶部占位（JS 会写入高度） -->
+    <div class="top-spacer" id="topSpacer"></div>
+
+    <!-- 页面主体：与主页一致 -->
+    <div class="stage">
+        <div class="page-sizer" id="pageSizer">
+            <div class="page" id="page">
+
+                <main class="project-main">
+
+                    <!-- Hero：左四列图 + 右一列信息 -->
+                    <section class="project-hero">
+
+                        <div class="proj-media">
+                            <img src="../images/album_cover/AC_01.png" alt="Album Cover Image 01">
+                        </div>
+
+                        <div class="proj-side">
+                            <div class="proj-title">Album Cover</div>
+                            <div class="proj-sub">Design, 2024</div>
+                        </div>
+
+                    </section>
+
+                    <!-- 下面只放一张图：仍然用同一个 stack 组件 -->
+                    <section class="proj-media-stack">
+                        <div class="proj-media">
+                            <img src="../images/album_cover/AC_02.png" alt="Album Cover Image 02">
+                        </div>
+                    </section>
+
+                    <!-- 可选：如果你想也放一段文案就保留；不需要就整段删掉 -->
+                    <section class="proj-text">
+                        <p>
+                            Two geometric album covers built through typographic structure and color contrast.
+                            Murasaki (purple) and Daidai (orange) are used to establish rhythm, balance,
+                            and visual tension.
+                        </p>
+                        <div class="end-spacer"></div>
+                    </section>
+
+                </main>
+
+                <footer class="bottom">
+                    Mabel Chen © 2026
+                </footer>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="../scale.js"></script>
+</body>
+
+</html>
