@@ -426,3 +426,26 @@ body {
   width: auto;
   object-fit: contain;
 }
+
+.resume-hover{
+  position: relative;
+  cursor: default;
+}
+
+/* 默认隐藏 */
+.resume-tip{
+  display: none;
+  margin-left: 0.5em;
+  font-size: var(--fs-10);     /* 更小一档 */
+  line-height: var(--lh-13);
+  color: #777;                 /* 克制一点 */
+}
+
+/* hover 时显示 */
+.resume-hover:hover .resume-tip{
+  display: inline;
+}
+
+.about-links a:hover{
+  text-decoration: none;
+}
