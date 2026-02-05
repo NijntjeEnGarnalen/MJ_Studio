@@ -427,9 +427,12 @@ body {
   object-fit: contain;
 }
 
+
 .resume-hover{
   position: relative;
-  cursor: default;
+  cursor: pointer;      /* ✅ 明确告诉用户“能点” */
+  text-decoration: none;
+  color: #111;
 }
 
 /* 默认隐藏 */
@@ -442,10 +445,37 @@ body {
 }
 
 /* hover 时显示 */
-.resume-hover:hover .resume-tip{
-  display: inline;
+.resume-hover:hover{
+  text-decoration: none;
+}
+
+
+
+
+/* About 左侧链接：默认/hover 都不显示下划线 */
+.about-links a{
+  text-decoration: none;
+  color: #111;
+  display: block;              /* 你之前就是 block，就保留 */
 }
 
 .about-links a:hover{
-  text-decoration: none;
+  text-decoration: none;        /* ✅ 永远不下划线 */
+}
+
+/* Resume hover 提示（确保一定生效） */
+.about-links a.resume-hover{
+  cursor: pointer;
+}
+
+.about-links a.resume-hover .resume-tip{
+  display: none;
+  margin-left: 0.5em;
+  font-size: var(--fs-10);
+  line-height: var(--lh-13);
+  color: #777;
+}
+
+.about-links a.resume-hover:hover .resume-tip{
+  display: inline;
 }
