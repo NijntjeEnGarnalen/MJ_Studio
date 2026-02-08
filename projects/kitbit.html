@@ -9,163 +9,195 @@
   <link rel="icon" href="../favicon.ico">
 
   <style>
-    body {
-      background: #fff9e8;
+    body { background: #fff9e8; }
+
+    /* =========================
+       MOBILE：仅手机端生效（按你既定规范）
+       + 空白 end-spacer 放在 footer 上边
+       ========================= */
+    .desktop-only { display: block; }
+    .mobile-only  { display: none; }
+
+    @media (max-width: 768px) {
+      .desktop-only { display: none; }
+      .mobile-only  { display: block; }
+
+      .mobile-scroll{
+        width: 100%;
+        min-height: 100vh;
+        overflow-y: auto;
+        background: #fff9e8;
+      }
+
+      .mobile-scale-wrap{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      #mobileArtboard{
+        width: 4in;
+        height: auto;
+        transform-origin: top left;
+      }
+
+      .mobile-page{
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.25in 0.125in;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .m-topbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .m-brand a,
+      .m-about a{
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 10pt;
+        line-height: 10pt;
+        color: #ff2aa1;
+        text-decoration: none;
+      }
+
+      /* meta 起始高度 = 手机主页首图高度 */
+      .m-proj-meta{
+        margin-top: 0.3in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #111;
+      }
+
+      .m-proj-stack{
+        margin-top: 0.072in;
+      }
+
+      .m-proj-stack img{
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .m-proj-stack img + img{
+        margin-top: 0.072in;
+      }
+
+      .m-proj-desc{
+        margin-top: 0.072in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 7pt;
+        line-height: 9pt;
+        color: #111;
+      }
+      .m-proj-desc p{ margin: 0; }
+      .m-proj-desc p + p{ margin-top: 0.072in; } /* 多段落节奏按系统间距 */
+
+      .m-proj-desc strong{
+        font-weight: 700;
+      }
+
+      .m-footer{
+        margin-top: 0.5in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #111;
+      }
     }
   </style>
-
 </head>
 
 <body>
 
-  <!-- 顶部固定第一行：与主页一致 -->
-  <div class="top-fixed" id="topFixed">
-    <header class="top">
-      <div class="brand">
-        <a href="../work.html">MJ Studio</a>
-      </div>
-      <nav class="topnav">
-        <a class="index" href="../index.html">Index</a>
-      <a class="work" href="../work.html">Work</a>
-      <a class="about" href="../about.html">About</a>
-      </nav>
-    </header>
-  </div>
+  <!-- ===================== -->
+  <!-- DESKTOP：原网页版（不动） -->
+  <!-- ===================== -->
+  <div class="desktop-only">
 
-  <!-- 顶部占位（JS 会写入高度） -->
-  <div class="top-spacer" id="topSpacer"></div>
+    <div class="top-fixed" id="topFixed">
+      <header class="top">
+        <div class="brand">
+          <a href="../index.html">MJ Studio</a>
+        </div>
+        <nav class="topnav">
+          <a class="index" href="../list.html">Index</a>
+          <a class="work" href="../index.html">Work</a>
+          <a class="about" href="../about.html">About</a>
+        </nav>
+      </header>
+    </div>
 
-  <!-- 页面主体：与主页一致 -->
-  <div class="stage">
-    <div class="page-sizer" id="pageSizer">
-      <div class="page" id="page">
+    <div class="top-spacer" id="topSpacer"></div>
 
-        <!-- 项目页内容：同样五列网格（CSS 里用 .project-main / .project-hero / .proj-media 等控制） -->
-        <main class="project-main">
+    <div class="stage">
+      <div class="page-sizer" id="pageSizer">
+        <div class="page" id="page">
 
-          <!-- 第一行起始高度与主页 01 一致：依赖同样的 top-spacer + margin-top 变量 -->
-          <section class="project-hero">
+          <main class="project-main">
 
-            <!-- 灰色块 01：占左起四列，3:2 -->
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_01.png" alt="Kitbit Image 01">
-            </div>
+            <section class="project-hero">
 
-            <!-- 右侧第 5 列：左对齐 -->
-            <div class="proj-side">
-              <div class="proj-title">Kitbit</div>
-              <div class="proj-sub">Character Design, 2024</div>
-            </div>
+              <div class="proj-media">
+                <img src="../images/kitbit/Kitbit_01.png" alt="Kitbit Image 01">
+              </div>
 
-          </section>
+              <div class="proj-side">
+                <div class="proj-title">Kitbit</div>
+                <div class="proj-sub">Poster Series, 2024</div>
+              </div>
 
-          <!-- 灰色块 02–18：每块间隔 = 1 gutter；每块都和第一块同规格 -->
-          <section class="proj-media-stack">
+            </section>
 
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_02.png" alt="Kitbit Image 02">
-            </div>
+            <section class="proj-media-stack">
 
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_03.png" alt="Kitbit Image 03">
-            </div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_02.png" alt="Kitbit Image 02"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_03.png" alt="Kitbit Image 03"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_04.jpg" alt="Kitbit Image 04"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_05.png" alt="Kitbit Image 05"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_06.png" alt="Kitbit Image 06"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_07.png" alt="Kitbit Image 07"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_08.png" alt="Kitbit Image 08"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_09.png" alt="Kitbit Image 09"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_10.JPG" alt="Kitbit Image 10"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_11.png" alt="Kitbit Image 11"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_12.png" alt="Kitbit Image 12"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_13.png" alt="Kitbit Image 13"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_14.png" alt="Kitbit Image 14"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_15.png" alt="Kitbit Image 15"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_16.png" alt="Kitbit Image 16"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_17.jpg" alt="Kitbit Image 17"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_18.jpg" alt="Kitbit Image 18"></div>
+              <div class="proj-media"><img src="../images/kitbit/Kitbit_19.jpg" alt="Kitbit Image 19"></div>
 
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_04.jpg" alt="Kitbit Image 04">
-            </div>
+            </section>
 
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_05.png" alt="Kitbit Image 05">
-            </div>
+            <section class="proj-text">
+              <p><strong>Collect. Connect. Cherish.</strong></p>
+              <p>
+                This project explores IP characters as emotional anchors and cultural icons—blending
+                nostalgia, consumerism, and personal identity. Through research and visual storytelling, it examines why
+                these characters resonate, how they evolve,
+                and the lasting impact they leave on everyday life.
+                <br><br>
+              </p>
 
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_06.png" alt="Kitbit Image 06">
-            </div>
-
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_07.png" alt="Kitbit Image 07">
-            </div>
-
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_08.png" alt="Kitbit Image 08">
-            </div>
-
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_09.png" alt="Kitbit Image 09">
-            </div>
-
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_10.JPG" alt="Kitbit Image 10">
-            </div>
-
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_11.png" alt="Kitbit Image 11">
-            </div>
-
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_12.png" alt="Kitbit Image 12">
-            </div>
-
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_13.png" alt="Kitbit Image 13">
-            </div>
-
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_14.png" alt="Kitbit Image 14">
-            </div>
-
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_15.png" alt="Kitbit Image 15">
-            </div>
-
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_16.png" alt="Kitbit Image 16">
-            </div>
-
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_17.jpg" alt="Kitbit Image 17">
-            </div>
-
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_18.jpg" alt="Kitbit Image 18">
-            </div>
-
-            <div class="proj-media">
-              <img src="../images/kitbit/Kitbit_19.jpg" alt="Kitbit Image 19">
-            </div>
-
-
-
-
-          </section>
-
-
-          <!-- 段落：只占左起两列；与灰色块间隔 = 1 gutter；无 hyphen；尽量 no widow（由 CSS 控制） -->
-          <section class="proj-text">
-            <p>
-              <strong>Collect. Connect. Cherish.</strong>
-            </p>
-<p>
-              This project explores IP characters as emotional anchors and cultural icons—blending
-              nostalgia, consumerism, and personal identity. Through research and visual storytelling, it examines why
-              these characters resonate, how they evolve,
-              and the lasting impact they leave on everyday life.
-            <br><br>
-            </p>
-
-            <p>
-              <strong>STEP 01. Create Character</strong>
-            </p>
+              <p><strong>STEP 01. Create Character</strong></p>
               <p>
                 Kitbit is designed with a gentle, approachable language: a faint smile that mirrors the psychology
                 of young people in the post-pandemic era; dot eyes that feel universally cute and easy to recognize;
                 a 1:1 head-to-body ratio that pushes the character into a playful, iconic silhouette; and
                 round hands and feet that emphasize youthfulness and innocence.<br><br>
               </p>
-            
-            <p>
-              <strong>STEP 02. Come to Reality</strong>
-            </p>
+
+              <p><strong>STEP 02. Come to Reality</strong></p>
               <p>
                 Kitbit transitions from a graphic character into a physical object through 3D printing.
                 The model is separated into printable parts (head / torso / legs), then produced in photopolymer resin.
@@ -174,14 +206,10 @@
               <p>
                 In the front view, the minimal surface keeps the character calm and inviting.<br>
                 In the back view, a collection of small accessories becomes a container for personal stories—turning
-                Kitbit
-                into a collective expression shaped by its community.<br><br>
+                Kitbit into a collective expression shaped by its community.<br><br>
               </p>
-            </p>
 
-            <p>
-              <strong>STEP 03. Marketing Strategy</strong>
-            </p>
+              <p><strong>STEP 03. Marketing Strategy</strong></p>
               <p>
                 Kitbit enters stores with a clear strategy: build excitement, encourage collecting, and expand the
                 character's
@@ -192,11 +220,8 @@
                 Over time, Kitbit “fills every corner” of the home as an object you live with. The more you care for it,
                 the more it feels personal—adding warmth and character to your space.<br><br>
               </p>
-            </p>
 
-            <p>
-              <strong>STEP 04. Fate Decided</strong>
-            </p>
+              <p><strong>STEP 04. Fate Decided</strong></p>
               <p>
                 Like many beloved toys, Kitbit eventually shifts from the center of attention into the background.
                 It becomes a relic of a time—still meaningful, but stored away with memories.
@@ -207,28 +232,131 @@
                 lifecycle:
                 from desire and attachment to quiet disappearance.
               </p>
-            </p>
 
+              <div class="end-spacer"></div>
+            </section>
 
-            <div class="end-spacer"></div>
-          </section>
+          </main>
 
+          <footer class="bottom">
+            Mabel Chen © 2026
+          </footer>
 
-
-
-
-        </main>
-
-        <!-- 底部：与主页一致 -->
-        <footer class="bottom">
-          Mabel Chen © 2026
-        </footer>
-
+        </div>
       </div>
+    </div>
+
+  </div>
+
+  <!-- ===================== -->
+  <!-- MOBILE：按你既定规范新增（空白 end-spacer 在 footer 上边） -->
+  <!-- ===================== -->
+  <div class="mobile-only">
+    <div class="mobile-scroll">
+
+      <div class="mobile-scale-wrap" id="mobileScaleWrap">
+        <div class="mobile-artboard" id="mobileArtboard" data-artboard-w="4">
+          <div class="mobile-page">
+
+            <header class="m-topbar">
+              <div class="m-brand"><a href="../work.html">MJ Studio</a></div>
+              <div class="m-about"><a href="../about.html">About</a></div>
+            </header>
+
+            <div class="m-proj-meta">
+              <div>Kitbit, 2024</div>
+              <div>Poster Series</div>
+            </div>
+
+            <section class="m-proj-stack">
+              <img src="../images/kitbit/Kitbit_01.png" alt="Kitbit Image 01">
+              <img src="../images/kitbit/Kitbit_02.png" alt="Kitbit Image 02">
+              <img src="../images/kitbit/Kitbit_03.png" alt="Kitbit Image 03">
+              <img src="../images/kitbit/Kitbit_04.jpg" alt="Kitbit Image 04">
+              <img src="../images/kitbit/Kitbit_05.png" alt="Kitbit Image 05">
+              <img src="../images/kitbit/Kitbit_06.png" alt="Kitbit Image 06">
+              <img src="../images/kitbit/Kitbit_07.png" alt="Kitbit Image 07">
+              <img src="../images/kitbit/Kitbit_08.png" alt="Kitbit Image 08">
+              <img src="../images/kitbit/Kitbit_09.png" alt="Kitbit Image 09">
+              <img src="../images/kitbit/Kitbit_10.JPG" alt="Kitbit Image 10">
+              <img src="../images/kitbit/Kitbit_11.png" alt="Kitbit Image 11">
+              <img src="../images/kitbit/Kitbit_12.png" alt="Kitbit Image 12">
+              <img src="../images/kitbit/Kitbit_13.png" alt="Kitbit Image 13">
+              <img src="../images/kitbit/Kitbit_14.png" alt="Kitbit Image 14">
+              <img src="../images/kitbit/Kitbit_15.png" alt="Kitbit Image 15">
+              <img src="../images/kitbit/Kitbit_16.png" alt="Kitbit Image 16">
+              <img src="../images/kitbit/Kitbit_17.jpg" alt="Kitbit Image 17">
+              <img src="../images/kitbit/Kitbit_18.jpg" alt="Kitbit Image 18">
+              <img src="../images/kitbit/Kitbit_19.jpg" alt="Kitbit Image 19">
+            </section>
+
+            <section class="m-proj-desc">
+              <p><strong>Collect. Connect. Cherish.</strong></p>
+              <p>
+                This project explores IP characters as emotional anchors and cultural icons—blending
+                nostalgia, consumerism, and personal identity. Through research and visual storytelling, it examines why
+                these characters resonate, how they evolve,
+                and the lasting impact they leave on everyday life.
+              </p>
+
+              <p><strong>STEP 01. Create Character</strong></p>
+              <p>
+                Kitbit is designed with a gentle, approachable language: a faint smile that mirrors the psychology
+                of young people in the post-pandemic era; dot eyes that feel universally cute and easy to recognize;
+                a 1:1 head-to-body ratio that pushes the character into a playful, iconic silhouette; and
+                round hands and feet that emphasize youthfulness and innocence.
+              </p>
+
+              <p><strong>STEP 02. Come to Reality</strong></p>
+              <p>
+                Kitbit transitions from a graphic character into a physical object through 3D printing.
+                The model is separated into printable parts (head / torso / legs), then produced in photopolymer resin.
+                The clean white finish reinforces a sense of sacred simplicity and quiet reverence.
+              </p>
+              <p>
+                In the front view, the minimal surface keeps the character calm and inviting.
+                In the back view, a collection of small accessories becomes a container for personal stories—turning
+                Kitbit into a collective expression shaped by its community.
+              </p>
+
+              <p><strong>STEP 03. Marketing Strategy</strong></p>
+              <p>
+                Kitbit enters stores with a clear strategy: build excitement, encourage collecting, and expand the
+                character's presence through serializations and media. Once purchased, it becomes a cherished collectible—or a daily
+                companion.
+              </p>
+              <p>
+                Over time, Kitbit “fills every corner” of the home as an object you live with. The more you care for it,
+                the more it feels personal—adding warmth and character to your space.
+              </p>
+
+              <p><strong>STEP 04. Fate Decided</strong></p>
+              <p>
+                Like many beloved toys, Kitbit eventually shifts from the center of attention into the background.
+                It becomes a relic of a time—still meaningful, but stored away with memories.
+              </p>
+              <p>
+                In a collector's home, it may end up in a transparent bucket with other plush toys,
+                stacked high—some visible, some slowly forgotten at the bottom. The project captures this full
+                lifecycle:
+                from desire and attachment to quiet disappearance.
+              </p>
+            </section>
+
+            <!-- ✅ 空白占位：就在 footer 上边 -->
+            <div class="end-spacer"></div>
+
+            <footer class="m-footer">
+              Mabel Chen © 2026
+            </footer>
+
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- 缩放与顶栏占位同步：与主页一致 -->
   <script src="../scale.js"></script>
 </body>
 
