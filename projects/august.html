@@ -9,12 +9,11 @@
   <link rel="icon" href="../favicon.ico">
 
   <style>
-    body {
-      background: #f9f9f9;
-    }
+    body { background: #f9f9f9; }
 
     /* =========================
        MOBILE：仅手机端生效
+       目标：竖图保持原比例完整显示（不裁切），同时宽度撑满左右 margin 之间的内容宽
        ========================= */
     .desktop-only { display: block; }
     .mobile-only  { display: none; }
@@ -79,9 +78,10 @@
         margin-top: 0.072in;
       }
 
+      /* ✅ 关键：整张图完整显示 + 宽度撑满内容区（左右 margin 之间） */
       .m-proj-stack img{
         width: 100%;
-        height: auto;
+        height: auto;      /* 保持原比例 */
         display: block;
       }
 
@@ -98,9 +98,7 @@
         color: #111;
       }
 
-      .m-proj-desc p{
-        margin: 0;
-      }
+      .m-proj-desc p{ margin: 0; }
 
       .m-footer{
         margin-top: 0.5in;
@@ -156,9 +154,7 @@
 
             </section>
 
-            <section class="proj-media-stack">
-              <!--（此项目无额外图片，保持空结构即可）-->
-            </section>
+            <section class="proj-media-stack"></section>
 
             <section class="proj-text">
               <p></p>
@@ -178,7 +174,7 @@
   </div>
 
   <!-- ===================== -->
-  <!-- MOBILE：与手机项目页系统完全一致 -->
+  <!-- MOBILE：竖图整张显示 + 宽度撑满内容区 -->
   <!-- ===================== -->
   <div class="mobile-only">
     <div class="mobile-scroll">
@@ -198,16 +194,15 @@
             </div>
 
             <section class="m-proj-stack">
+              <!-- ✅ 不要外层固定比例框，直接让图片 width:100% -->
               <img src="../images/august/august_01.png" alt="August Image 01">
             </section>
 
-            <!-- 无 description：这一页按你的原始内容保持为空 -->
             <section class="m-proj-desc"></section>
 
             <div class="end-spacer"></div>
             <footer class="m-footer">
               Mabel Chen © 2026
-              
             </footer>
 
           </div>
