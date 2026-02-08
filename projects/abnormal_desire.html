@@ -12,122 +12,303 @@
     body {
       background: #fdffef;
     }
-  </style>
 
+    /* -------------------------
+       MOBILE (project page)
+       - 不改你网页版布局：只在手机断点显示 mobile-only
+       - margin / topnav 与手机主页一致（MJ Studio 左，About 右）
+       ------------------------- */
+    .desktop-only {
+      display: block;
+    }
+
+    .mobile-only {
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-only {
+        display: none;
+      }
+
+      .mobile-only {
+        display: block;
+      }
+
+      /* 允许滚动 */
+      .mobile-scroll {
+        width: 100%;
+        min-height: 100vh;
+        overflow-y: auto;
+        background: #fdffef;
+      }
+
+      /* 用来撑开缩放后的高度（JS 写 height） */
+      .mobile-scale-wrap {
+        width: 100%;
+        display: block;
+      }
+
+      /* 画板：固定宽 4in，高度由内容决定 */
+      #mobileArtboard {
+        width: 4in;
+        height: auto;
+        transform-origin: top left;
+      }
+
+      /* 页面 margin：上下0.25in，左右0.125in */
+      .mobile-page {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.25in 0.125in;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* 顶部栏（同手机主页） */
+      .m-topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .m-brand a,
+      .m-about a {
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 10pt;
+        line-height: 10pt;
+        color: #ff2aa1;
+        text-decoration: none;
+      }
+
+      /* “Project, 2000” 起始高度 = 手机主页第一个 project 图片开始高度（0.3in） */
+      .m-proj-meta {
+        margin-top: 0.3in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #111;
+      }
+
+      /* meta 到第一张图：这里用 0.072in（与你主页“图到标题”节奏一致） */
+      .m-proj-stack {
+        margin-top: 0.072in;
+      }
+
+      /* 图像：宽度撑满内容区（= 3.75in），图间距 0.072in */
+      .m-proj-stack img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .m-proj-stack img+img {
+        margin-top: 0.072in;
+      }
+
+      /* 底部 description：与网页版同文案，但字号 7pt / 行距 9pt */
+      .m-proj-desc {
+        margin-top: 0.072in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 7pt;
+        line-height: 9pt;
+        color: #111;
+      }
+
+      /* 页脚：与手机主页一致的留白节奏 */
+      .m-footer {
+        margin-top: 0.5in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #111;
+      }
+
+      .m-proj-desc p {
+        margin: 0;
+        /* ✅ 干掉浏览器默认段前/段后距 */
+      }
+
+
+      .m-proj-desc p+p {
+        margin-top: 0.072in;
+        /* 多段之间再用你的系统间距 */
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- 顶部固定第一行：与主页一致 -->
-  <div class="top-fixed" id="topFixed">
-    <header class="top">
-      <div class="brand">
-        <a href="../work.html">MJ Studio</a>
-      </div>
-      <nav class="topnav">
-        <a class="index" href="../index.html">Index</a>
-      <a class="work" href="../work.html">Work</a>
-      <a class="about" href="../about.html">About</a>
-      </nav>
-    </header>
-  </div>
+  <!-- ===================== -->
+  <!-- DESKTOP：你现有网页版（原封不动保留） -->
+  <!-- ===================== -->
+  <div class="desktop-only">
 
-  <!-- 顶部占位（JS 会写入高度） -->
-  <div class="top-spacer" id="topSpacer"></div>
+    <!-- 顶部固定第一行：与主页一致 -->
+    <div class="top-fixed" id="topFixed">
+      <header class="top">
+        <div class="brand">
+          <a href="../index.html">MJ Studio</a>
+        </div>
+        <nav class="topnav">
+          <a class="index" href="../list.html">Index</a>
+          <a class="work" href="../index.html">Work</a>
+          <a class="about" href="../about.html">About</a>
+        </nav>
+      </header>
+    </div>
 
-  <!-- 页面主体：与主页一致 -->
-  <div class="stage">
-    <div class="page-sizer" id="pageSizer">
-      <div class="page" id="page">
+    <!-- 顶部占位（JS 会写入高度） -->
+    <div class="top-spacer" id="topSpacer"></div>
 
-        <!-- 项目页内容：同样五列网格（CSS 里用 .project-main / .project-hero / .proj-media 等控制） -->
-        <main class="project-main">
+    <!-- 页面主体：与主页一致 -->
+    <div class="stage">
+      <div class="page-sizer" id="pageSizer">
+        <div class="page" id="page">
 
-          <!-- 第一行起始高度与主页 01 一致：依赖同样的 top-spacer + margin-top 变量 -->
-          <section class="project-hero">
+          <main class="project-main">
 
-            <!-- 灰色块 01：占左起四列，3:2 -->
-            <div class="proj-media">
-              <img src="../images/abnormal_desire/AB_01.JPG" alt="AB Image 01">
-            </div>
+            <section class="project-hero">
 
-            <!-- 右侧第 5 列：左对齐 -->
-            <div class="proj-side">
-              <div class="proj-title">Abnormal Desire</div>
-              <div class="proj-sub">Booklet, 2023</div>
-            </div>
+              <div class="proj-media">
+                <img src="../images/abnormal_desire/AB_01.JPG" alt="AB Image 01">
+              </div>
 
-          </section>
+              <div class="proj-side">
+                <div class="proj-title">Abnormal Desire</div>
+                <div class="proj-sub">Booklet Design, 2023</div>
+              </div>
 
-          <!-- 灰色块 02–18：每块间隔 = 1 gutter；每块都和第一块同规格 -->
-          <section class="proj-media-stack">
+            </section>
 
-            <div class="proj-media">
-              <img src="../images/abnormal_desire/AB_02.JPG" alt="AB Image 02">
-            </div>
-            <div class="proj-media">
-              <img src="../images/abnormal_desire/AB_03.jpg" alt="AB Image 03">
-            </div>
-            <div class="proj-media">
-              <img src="../images/abnormal_desire/AB_04.JPG" alt="AB Image 04">
-            </div>
-            <div class="proj-media">
-              <img src="../images/abnormal_desire/AB_05.JPG" alt="AB Image 05">
-            </div>
-            <div class="proj-media">
-              <img src="../images/abnormal_desire/AB_14.JPG" alt="AB Image 14">
-            </div>
-            <div class="proj-media">
-              <img src="../images/abnormal_desire/AB_06.JPG" alt="AB Image 06">
-            </div>
-            <div class="proj-media">
-              <img src="../images/abnormal_desire/AB_07.JPG" alt="AB Image 07">
-            </div>
-            <div class="proj-media">
-              <img src="../images/abnormal_desire/AB_08.JPG" alt="AB Image 08">
-            </div>
-            <div class="proj-media">
-              <img src="../images/abnormal_desire/AB_09.JPG" alt="AB Image 09">
-            </div>
-            <div class="proj-media">
-              <img src="../images/abnormal_desire/AB_10.JPG" alt="AB Image 10">
-            </div>
-            <div class="proj-media">
-              <img src="../images/abnormal_desire/AB_11.JPG" alt="AB Image 11">
-            </div>
-            
+            <section class="proj-media-stack">
 
-           
-           
+              <div class="proj-media">
+                <img src="../images/abnormal_desire/AB_02.JPG" alt="AB Image 02">
+              </div>
+              <div class="proj-media">
+                <img src="../images/abnormal_desire/AB_03.jpg" alt="AB Image 03">
+              </div>
+              <div class="proj-media">
+                <img src="../images/abnormal_desire/AB_04.JPG" alt="AB Image 04">
+              </div>
+              <div class="proj-media">
+                <img src="../images/abnormal_desire/AB_05.JPG" alt="AB Image 05">
+              </div>
+              <div class="proj-media">
+                <img src="../images/abnormal_desire/AB_14.JPG" alt="AB Image 14">
+              </div>
+              <div class="proj-media">
+                <img src="../images/abnormal_desire/AB_06.JPG" alt="AB Image 06">
+              </div>
+              <div class="proj-media">
+                <img src="../images/abnormal_desire/AB_07.JPG" alt="AB Image 07">
+              </div>
+              <div class="proj-media">
+                <img src="../images/abnormal_desire/AB_08.JPG" alt="AB Image 08">
+              </div>
+              <div class="proj-media">
+                <img src="../images/abnormal_desire/AB_09.JPG" alt="AB Image 09">
+              </div>
+              <div class="proj-media">
+                <img src="../images/abnormal_desire/AB_10.JPG" alt="AB Image 10">
+              </div>
+              <div class="proj-media">
+                <img src="../images/abnormal_desire/AB_11.JPG" alt="AB Image 11">
+              </div>
 
-          </section>
+            </section>
 
-
-          <!-- 段落：只占左起两列；与灰色块间隔 = 1 gutter；无 hyphen；尽量 no widow（由 CSS 控制） -->
-          <section class="proj-text">
-            <p>
-                This booklet was created for the Japanese film <em>Abnormal Desire</em>, 
-                written by Ryo Asai. The film presents an ensemble of characters, 
+            <section class="proj-text">
+              <p>
+                This booklet was created for the Japanese film <em>Abnormal Desire</em>,
+                written by Ryo Asai. The film presents an ensemble of characters,
                 with water as a recurring motif that connects individual perspectives
-                and narratives. Reflecting this structure, the booklet is organized 
+                and narratives. Reflecting this structure, the booklet is organized
                 into distinct chapters, each unfolding through a different character's
                 point of view, allowing the stories to flow and intersect gradually.
-            </p>
-            <div class="end-spacer"></div>
-          </section>
+              </p>
+              <div class="end-spacer"></div>
+            </section>
 
-        </main>
+          </main>
 
-        <!-- 底部：与主页一致 -->
-        <footer class="bottom">
-          Mabel Chen © 2026
-        </footer>
+          <footer class="bottom">
+            Mabel Chen © 2026
+          </footer>
 
+        </div>
       </div>
+    </div>
+
+  </div>
+
+  <!-- ===================== -->
+  <!-- MOBILE：与手机主页同 margin / 顶部样式，内容可滚动 -->
+  <!-- ===================== -->
+  <div class="mobile-only">
+    <div class="mobile-scroll">
+
+      <div class="mobile-scale-wrap" id="mobileScaleWrap">
+        <div class="mobile-artboard" id="mobileArtboard" data-artboard-w="4">
+          <div class="mobile-page">
+
+            <!-- 顶部：MJ Studio（左） / About（右） -->
+            <header class="m-topbar">
+              <div class="m-brand"><a href="../work.html">MJ Studio</a></div>
+              <div class="m-about"><a href="../about.html">About</a></div>
+            </header>
+
+            <!-- meta：起始高度对齐手机主页首图高度 -->
+            <div class="m-proj-meta">
+              <div>Abnormal Desire, 2023</div>
+              <div>Booklet Design</div>
+            </div>
+
+            <!-- 图片：与网页版相同，图间距 0.072in -->
+            <section class="m-proj-stack" aria-label="Project images">
+              <img src="../images/abnormal_desire/AB_01.JPG" alt="AB Image 01">
+              <img src="../images/abnormal_desire/AB_02.JPG" alt="AB Image 02">
+              <img src="../images/abnormal_desire/AB_03.jpg" alt="AB Image 03">
+              <img src="../images/abnormal_desire/AB_04.JPG" alt="AB Image 04">
+              <img src="../images/abnormal_desire/AB_05.JPG" alt="AB Image 05">
+              <img src="../images/abnormal_desire/AB_14.JPG" alt="AB Image 14">
+              <img src="../images/abnormal_desire/AB_06.JPG" alt="AB Image 06">
+              <img src="../images/abnormal_desire/AB_07.JPG" alt="AB Image 07">
+              <img src="../images/abnormal_desire/AB_08.JPG" alt="AB Image 08">
+              <img src="../images/abnormal_desire/AB_09.JPG" alt="AB Image 09">
+              <img src="../images/abnormal_desire/AB_10.JPG" alt="AB Image 10">
+              <img src="../images/abnormal_desire/AB_11.JPG" alt="AB Image 11">
+            </section>
+
+            <!-- description：同网页版文案，7pt/9pt -->
+            <section class="m-proj-desc">
+              <p>
+                This booklet was created for the Japanese film <em>Abnormal Desire</em>,
+                written by Ryo Asai. The film presents an ensemble of characters,
+                with water as a recurring motif that connects individual perspectives
+                and narratives. Reflecting this structure, the booklet is organized
+                into distinct chapters, each unfolding through a different character's
+                point of view, allowing the stories to flow and intersect gradually.
+              </p>
+            </section>
+            <div class="end-spacer"></div>
+
+            <footer class="m-footer">Mabel Chen © 2026</footer>
+
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 
-  <!-- 缩放与顶栏占位同步：与主页一致 -->
+  <!-- 继续用你现有的缩放/顶栏高度脚本（其中已加入 mobile 支持） -->
   <script src="../scale.js"></script>
 </body>
 
