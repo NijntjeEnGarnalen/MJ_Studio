@@ -13,7 +13,9 @@
             background: #2b2b2b;
         }
 
-        /* 强力覆盖：把 project 区域里所有文字都拉回你想要的颜色 */
+        /* =========================
+       DESKTOP：强制文字颜色（保持你现在的效果）
+       ========================= */
         .project-main,
         .project-main *,
         .bottom,
@@ -22,78 +24,257 @@
         .proj-side * {
             color: #eaeaea !important;
             -webkit-text-fill-color: #eaeaea !important;
-            /* 防止 style.css 用了 text-fill-color */
+        }
+
+        /* =========================
+       MOBILE：仅手机端生效
+       ========================= */
+        .desktop-only {
+            display: block;
+        }
+
+        .mobile-only {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .desktop-only {
+                display: none;
+            }
+
+            .mobile-only {
+                display: block;
+            }
+
+            /* 允许滚动 */
+            .mobile-scroll {
+                width: 100%;
+                min-height: 100vh;
+                overflow-y: auto;
+                background: #2b2b2b;
+            }
+
+            /* 撑开缩放后的高度（JS 会写 height） */
+            .mobile-scale-wrap {
+                width: 100%;
+                display: block;
+            }
+
+            /* 4in 宽画板，高度由内容决定 */
+            #mobileArtboard {
+                width: 4in;
+                height: auto;
+                transform-origin: top left;
+            }
+
+            /* 页面 margin：与手机主页一致 */
+            .mobile-page {
+                width: 100%;
+                box-sizing: border-box;
+                padding: 0.25in 0.125in;
+                display: flex;
+                flex-direction: column;
+            }
+
+            /* 顶部栏：同手机主页 */
+            .m-topbar {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+            }
+
+            .m-brand a,
+            .m-about a {
+                font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+                font-weight: 700;
+                font-size: 10pt;
+                line-height: 10pt;
+                color: #ff2aa1;
+                text-decoration: none;
+            }
+
+            /* Project meta：起始高度 = 手机主页首图高度 */
+            .m-proj-meta {
+                margin-top: 0.3in;
+                font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+                font-weight: 400;
+                font-size: 8pt;
+                line-height: 10pt;
+                color: #eaeaea;
+            }
+
+            /* meta 到第一张图 */
+            .m-proj-stack {
+                margin-top: 0.072in;
+            }
+
+            /* 图片样式：宽度 = 内容区（3.75in），图间距 0.072in */
+            .m-proj-stack img {
+                width: 100%;
+                height: auto;
+                display: block;
+            }
+
+            .m-proj-stack img+img {
+                margin-top: 0.072in;
+            }
+
+            /* description：7pt / 9pt */
+            .m-proj-desc {
+                margin-top: 0.072in;
+                /* ✅ 与图片-图片的间距完全一致 */
+                font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+                font-weight: 400;
+                font-size: 7pt;
+                line-height: 9pt;
+                color: #eaeaea;
+            }
+
+
+            /* footer */
+            .m-footer {
+                margin-top: 0.5in;
+                font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+                font-weight: 400;
+                font-size: 8pt;
+                line-height: 10pt;
+                color: #eaeaea;
+            }
+
+
+            .m-proj-desc p {
+                margin: 0;
+                /* ✅ 干掉浏览器默认段前/段后距 */
+            }
+
+
+            .m-proj-desc p+p {
+                margin-top: 0.072in;
+                /* 多段之间再用你的系统间距 */
+            }
+
         }
     </style>
 </head>
 
 <body>
 
-    <!-- 顶部固定第一行：与主页一致 -->
-    <div class="top-fixed" id="topFixed">
-        <header class="top">
-            <div class="brand">
-                <a href="../work.html">MJ Studio</a>
-            </div>
-            <nav class="topnav">
-                <a class="index" href="../index.html">Index</a>
-      <a class="work" href="../work.html">Work</a>
-      <a class="about" href="../about.html">About</a>
-            </nav>
-        </header>
-    </div>
+    <!-- ===================== -->
+    <!-- DESKTOP：原网页版，完全不动 -->
+    <!-- ===================== -->
+    <div class="desktop-only">
 
-    <!-- 顶部占位（JS 会写入高度） -->
-    <div class="top-spacer" id="topSpacer"></div>
+        <div class="top-fixed" id="topFixed">
+            <header class="top">
+                <div class="brand">
+                    <a href="../index.html">MJ Studio</a>
+                </div>
+                <nav class="topnav">
+                    <a class="index" href="../list.html">Index</a>
+                    <a class="work" href="../index.html">Work</a>
+                    <a class="about" href="../about.html">About</a>
+                </nav>
+            </header>
+        </div>
 
-    <!-- 页面主体：与主页一致 -->
-    <div class="stage">
-        <div class="page-sizer" id="pageSizer">
-            <div class="page" id="page">
+        <div class="top-spacer" id="topSpacer"></div>
 
-                <main class="project-main">
+        <div class="stage">
+            <div class="page-sizer" id="pageSizer">
+                <div class="page" id="page">
 
-                    <!-- Hero：左四列图 + 右一列信息 -->
-                    <section class="project-hero">
+                    <main class="project-main">
 
-                        <div class="proj-media">
-                            <img src="../images/album_cover/AC_01.png" alt="Album Cover Image 01">
-                        </div>
+                        <section class="project-hero">
 
-                        <div class="proj-side">
-                            <div class="proj-title">Album Cover</div>
-                            <div class="proj-sub">Design, 2024</div>
-                        </div>
+                            <div class="proj-media">
+                                <img src="../images/album_cover/AC_01.png" alt="Album Cover Image 01">
+                            </div>
 
-                    </section>
+                            <div class="proj-side">
+                                <div class="proj-title">Album Cover</div>
+                                <div class="proj-sub">Design, 2024</div>
+                            </div>
 
-                    <!-- 下面只放一张图：仍然用同一个 stack 组件 -->
-                    <section class="proj-media-stack">
-                        <div class="proj-media">
-                            <img src="../images/album_cover/AC_02.png" alt="Album Cover Image 02">
-                        </div>
-                    </section>
+                        </section>
 
-                    <!-- 可选：如果你想也放一段文案就保留；不需要就整段删掉 -->
-                    <section class="proj-text">
-                        <p>
-                            Two geometric album covers built through typographic structure and color contrast.
-                            Murasaki (purple) and Daidai (orange) are used to establish rhythm, balance,
-                            and visual tension.
-                        </p>
-                        <div class="end-spacer"></div>
-                    </section>
+                        <section class="proj-media-stack">
+                            <div class="proj-media">
+                                <img src="../images/album_cover/AC_02.png" alt="Album Cover Image 02">
+                            </div>
+                        </section>
 
-                </main>
+                        <section class="proj-text">
+                            <p>
+                                Two geometric album covers built through typographic structure and color contrast.
+                                Murasaki (purple) and Daidai (orange) are used to establish rhythm, balance,
+                                and visual tension.
+                            </p>
+                            <div class="end-spacer"></div>
+                        </section>
 
-                <footer class="bottom">
-                    Mabel Chen © 2026
-                </footer>
+                    </main>
 
+                    <footer class="bottom">
+                        Mabel Chen © 2026
+                    </footer>
+
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- ===================== -->
+    <!-- MOBILE：与手机主页 / 项目页一致 -->
+    <!-- ===================== -->
+    <div class="mobile-only">
+        <div class="mobile-scroll">
+
+            <div class="mobile-scale-wrap" id="mobileScaleWrap">
+                <div class="mobile-artboard" id="mobileArtboard" data-artboard-w="4">
+                    <div class="mobile-page">
+
+                        <!-- 顶部 -->
+                        <header class="m-topbar">
+                            <div class="m-brand"><a href="../work.html">MJ Studio</a></div>
+                            <div class="m-about"><a href="../about.html">About</a></div>
+                        </header>
+
+                        <!-- Project meta -->
+                        <div class="m-proj-meta">
+                            <div>Album Cover, 2024</div>
+                            <div>Design</div>
+                        </div>
+
+                        <!-- Images -->
+                        <section class="m-proj-stack">
+                            <img src="../images/album_cover/AC_01.png" alt="Album Cover Image 01">
+                            <img src="../images/album_cover/AC_02.png" alt="Album Cover Image 02">
+                        </section>
+
+                        <!-- Description -->
+                        <section class="m-proj-desc">
+                            <p>
+                                Two geometric album covers built through typographic structure and color contrast.
+                                Murasaki (purple) and Daidai (orange) are used to establish rhythm, balance,
+                                and visual tension.
+                            </p>
+                            
+                        </section>
+                        
+                        <div class="end-spacer"></div>
+                        <footer class="m-footer">
+                            Mabel Chen © 2026
+                        </footer>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- 使用你现有的 desktop + mobile scale.js -->
     <script src="../scale.js"></script>
 </body>
 
