@@ -2,123 +2,282 @@
 <html lang="zh-CN">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Data Through Time: Tracing Path — MJ Studio</title>
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="icon" href="../favicon.ico">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Data Through Time: Tracing Path — MJ Studio</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="icon" href="../favicon.ico">
 
-    <style>
-        body {
-            background: #f5f5f5;
-        }
-    </style>
+  <style>
+    body {
+      background: #f5f5f5;
+    }
+
+    /* =========================
+       MOBILE：仅手机端生效（按你之前的规则）
+       ========================= */
+    .desktop-only { display: block; }
+    .mobile-only  { display: none; }
+
+    @media (max-width: 768px) {
+      .desktop-only { display: none; }
+      .mobile-only  { display: block; }
+
+      .mobile-scroll{
+        width: 100%;
+        min-height: 100vh;
+        overflow-y: auto;
+        background: #f5f5f5;
+      }
+
+      .mobile-scale-wrap{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      #mobileArtboard{
+        width: 4in;
+        height: auto;
+        transform-origin: top left;
+      }
+
+      .mobile-page{
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.25in 0.125in; /* 上下0.25in，左右0.125in */
+        display: flex;
+        flex-direction: column;
+      }
+
+      .m-topbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .m-brand a,
+      .m-about a{
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 10pt;
+        line-height: 10pt;
+        color: #ff2aa1;
+        text-decoration: none;
+      }
+
+      /* Project meta：起始高度 = 手机主页首图高度 */
+      .m-proj-meta{
+        margin-top: 0.3in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #111;
+      }
+
+      /* meta 到第一张图 */
+      .m-proj-stack{
+        margin-top: 0.072in;
+      }
+
+      /* 图与图间距 0.072in */
+      .m-proj-stack img{
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .m-proj-stack img + img{
+        margin-top: 0.072in;
+      }
+
+      /* description：7pt / 9pt，且清掉 p 默认 margin */
+      .m-proj-desc{
+        margin-top: 0.072in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 7pt;
+        line-height: 9pt;
+        color: #111;
+      }
+      .m-proj-desc p{
+        margin: 0;
+      }
+
+      /* footer（保持你之前的 0.5in 节奏） */
+      .m-footer{
+        margin-top: 0.5in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #111;
+      }
+    }
+  </style>
 
 </head>
 
 <body>
 
-    <!-- 顶部固定第一行：与主页一致 -->
+  <!-- ===================== -->
+  <!-- DESKTOP：原网页版（不动） -->
+  <!-- ===================== -->
+  <div class="desktop-only">
+
     <div class="top-fixed" id="topFixed">
-        <header class="top">
-            <div class="brand">
-                <a href="../work.html">MJ Studio</a>
-            </div>
-            <nav class="topnav">
-               <a class="index" href="../index.html">Index</a>
-      <a class="work" href="../work.html">Work</a>
-      <a class="about" href="../about.html">About</a>
-            </nav>
-        </header>
+      <header class="top">
+        <div class="brand">
+          <a href="../index.html">MJ Studio</a>
+        </div>
+        <nav class="topnav">
+          <a class="index" href="../list.html">Index</a>
+          <a class="work" href="../index.html">Work</a>
+          <a class="about" href="../about.html">About</a>
+        </nav>
+      </header>
     </div>
 
-    <!-- 顶部占位（JS 会写入高度） -->
     <div class="top-spacer" id="topSpacer"></div>
 
-    <!-- 页面主体：与主页一致 -->
     <div class="stage">
-        <div class="page-sizer" id="pageSizer">
-            <div class="page" id="page">
+      <div class="page-sizer" id="pageSizer">
+        <div class="page" id="page">
 
-                <!-- 项目页内容：同样五列网格（CSS 里用 .project-main / .project-hero / .proj-media 等控制） -->
-                <main class="project-main">
+          <main class="project-main">
 
-                    <!-- 第一行起始高度与主页 01 一致：依赖同样的 top-spacer + margin-top 变量 -->
-                    <section class="project-hero">
+            <section class="project-hero">
 
-                        <!-- 灰色块 01：占左起四列，3:2 -->
-                        <div class="proj-media">
-                            <img src="../images/data_through_time/DTT_01.png" alt="Data Through Time Image 01">
-                        </div>
+              <div class="proj-media">
+                <img src="../images/data_through_time/DTT_01.png" alt="Data Through Time Image 01">
+              </div>
 
-                        <!-- 右侧第 5 列：左对齐 -->
-                        <div class="proj-side">
-                            <div class="proj-title">Data Through Time: <br>Tracing Path</div>
-                            <div class="proj-sub">Exhibition Design, 2024</div>
-                        </div>
+              <div class="proj-side">
+                <div class="proj-title">Data Through Time: <br>Tracing Path</div>
+                <div class="proj-sub">Exhibition Design, 2024</div>
+              </div>
 
-                    </section>
+            </section>
 
-                    <!-- 灰色块 02–18：每块间隔 = 1 gutter；每块都和第一块同规格 -->
-                    <section class="proj-media-stack">
+            <section class="proj-media-stack">
+              <div class="proj-media">
+                <img src="../images/data_through_time/DTT_02.png" alt="Data Through Time Image 02">
+              </div>
+              <div class="proj-media">
+                <img src="../images/data_through_time/DTT_03.png" alt="Data Through Time Image 03">
+              </div>
+              <div class="proj-media">
+                <img src="../images/data_through_time/DTT_04.png" alt="Data Through Time Image 04">
+              </div>
+              <div class="proj-media">
+                <img src="../images/data_through_time/DTT_05.jpg" alt="Data Through Time Image 05">
+              </div>
+              <div class="proj-media">
+                <img src="../images/data_through_time/DTT_06.JPG" alt="Data Through Time Image 06">
+              </div>
+              <div class="proj-media">
+                <img src="../images/data_through_time/DTT_07.JPG" alt="Data Through Time Image 07">
+              </div>
+              <div class="proj-media">
+                <img src="../images/data_through_time/DTT_08.JPG" alt="Data Through Time Image 08">
+              </div>
+            </section>
 
-                        <div class="proj-media">
-                            <img src="../images/data_through_time/DTT_02.png" alt="Data Through Time Image 02">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/data_through_time/DTT_03.png" alt="Data Through Time Image 03">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/data_through_time/DTT_04.png" alt="Data Through Time Image 04">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/data_through_time/DTT_05.jpg" alt="Data Through Time Image 05">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/data_through_time/DTT_06.JPG" alt="Data Through Time Image 06">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/data_through_time/DTT_07.JPG" alt="Data Through Time Image 07">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/data_through_time/DTT_08.JPG" alt="Data Through Time Image 08">
-                        </div>
+            <section class="proj-text">
+              <p>
+                The visual system blends retro aesthetics with modern minimalism, inspired by early digital
+                designs. It features printer nozzle patterns and repetitive square motifs, symbolizing
+                fragmented yet enduring data storage and memory chips.
+                <br><br>
+                The exhibition targets on nostalgic storage device enthusiasts, tech lovers, and curious
+                younger audiences, using a chronological layout to connect fast-growing digital eras and
+                inspire on how data storage has, is, and will shape our digital lives.
+                <br><br>
+                Featuring pixel-like elements, 45-degree angles, and a palette of neon hues against muted
+                grays and blacks, the design evokes nostalgia for vintage hardware while maintaining a
+                clean, contemporary look.
+              </p>
+              <div class="end-spacer"></div>
+            </section>
 
-                    </section>
+          </main>
 
+          <footer class="bottom">
+            Mabel Chen © 2026
+          </footer>
 
-                    <!-- 段落：只占左起两列；与灰色块间隔 = 1 gutter；无 hyphen；尽量 no widow（由 CSS 控制） -->
-                    <section class="proj-text">
-                        <p>
-                            The visual system blends retro aesthetics with modern minimalism, inspired by early digital
-                            designs. It features printer nozzle patterns and repetitive square motifs, symbolizing
-                            fragmented yet enduring data storage and memory chips.
-                            <br><br>
-                            The exhibition targets on nostalgic storage device enthusiasts, tech lovers, and curious
-                            younger audiences, using a chronological layout to connect fast-growing digital eras and
-                            inspire on how data storage has, is, and will shape our digital lives.
-                            <br><br>
-                            Featuring pixel-like elements, 45-degree angles, and a palette of neon hues against muted
-                            grays and blacks, the design evokes nostalgia for vintage hardware while maintaining a
-                            clean, contemporary look.
-
-                        </p>
-                        <div class="end-spacer"></div>
-                    </section>
-
-                </main>
-
-                <!-- 底部：与主页一致 -->
-                <footer class="bottom">
-                    Mabel Chen © 2026
-                </footer>
-
-            </div>
         </div>
+      </div>
     </div>
 
-    <!-- 缩放与顶栏占位同步：与主页一致 -->
-    <script src="../scale.js"></script>
+  </div>
+
+  <!-- ===================== -->
+  <!-- MOBILE：按你要求新增（空白 end-spacer 在 footer 上边） -->
+  <!-- ===================== -->
+  <div class="mobile-only">
+    <div class="mobile-scroll">
+
+      <div class="mobile-scale-wrap" id="mobileScaleWrap">
+        <div class="mobile-artboard" id="mobileArtboard" data-artboard-w="4">
+          <div class="mobile-page">
+
+            <!-- 顶部：与手机主页一致 -->
+            <header class="m-topbar">
+              <div class="m-brand"><a href="../work.html">MJ Studio</a></div>
+              <div class="m-about"><a href="../about.html">About</a></div>
+            </header>
+
+            <!-- meta：起始高度与手机主页首图一致 -->
+            <div class="m-proj-meta">
+              <div>Data Through Time: Tracing Path, 2024</div>
+              <div>Exhibition Design</div>
+            </div>
+
+            <!-- 图片：与网页版相同，图间距 0.072in -->
+            <section class="m-proj-stack">
+              <img src="../images/data_through_time/DTT_01.png" alt="Data Through Time Image 01">
+              <img src="../images/data_through_time/DTT_02.png" alt="Data Through Time Image 02">
+              <img src="../images/data_through_time/DTT_03.png" alt="Data Through Time Image 03">
+              <img src="../images/data_through_time/DTT_04.png" alt="Data Through Time Image 04">
+              <img src="../images/data_through_time/DTT_05.jpg" alt="Data Through Time Image 05">
+              <img src="../images/data_through_time/DTT_06.JPG" alt="Data Through Time Image 06">
+              <img src="../images/data_through_time/DTT_07.JPG" alt="Data Through Time Image 07">
+              <img src="../images/data_through_time/DTT_08.JPG" alt="Data Through Time Image 08">
+            </section>
+
+            <!-- description：同网页版内容（7pt/9pt） -->
+            <section class="m-proj-desc">
+              <p>
+                The visual system blends retro aesthetics with modern minimalism, inspired by early digital
+                designs. It features printer nozzle patterns and repetitive square motifs, symbolizing
+                fragmented yet enduring data storage and memory chips.
+                <br><br>
+                The exhibition targets on nostalgic storage device enthusiasts, tech lovers, and curious
+                younger audiences, using a chronological layout to connect fast-growing digital eras and
+                inspire on how data storage has, is, and will shape our digital lives.
+                <br><br>
+                Featuring pixel-like elements, 45-degree angles, and a palette of neon hues against muted
+                grays and blacks, the design evokes nostalgia for vintage hardware while maintaining a
+                clean, contemporary look.
+              </p>
+            </section>
+
+            <!-- ✅ 空白位置：footer 上边 -->
+            <div class="end-spacer"></div>
+
+            <footer class="m-footer">
+              Mabel Chen © 2026
+            </footer>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../scale.js"></script>
 </body>
 
 </html>
