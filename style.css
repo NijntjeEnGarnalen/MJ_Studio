@@ -50,6 +50,9 @@
   --lh-18: calc(24px * var(--s));
   /* ✅ 18pt 行距 */
 
+  --lh-13: calc(17.33px * var(--s)); /* 13pt */
+
+
   --scroll-m0: calc(0.1875 * var(--inch));
   /* 灰色块离顶端的基准 margin */
   --scroll-m: calc(var(--scroll-m0) * var(--s));
@@ -427,7 +430,6 @@ body {
   object-fit: contain;
 }
 
-
 .resume-hover{
   position: relative;
   cursor: pointer;      /* ✅ 明确告诉用户“能点” */
@@ -478,4 +480,101 @@ body {
 
 .about-links a.resume-hover:hover .resume-tip{
   display: inline;
+}
+
+/* =========================
+   Mobile-only layout (4in × 8.5in artboard)
+   ========================= */
+
+/* 默认：手机结构隐藏，电脑结构显示 */
+/* 默认：电脑显示 desktop，隐藏 mobile */
+.desktop-only { display: block; }
+.mobile-only  { display: none; }
+
+@media (max-width: 768px) {
+  .desktop-only { display: none; }
+  .mobile-only  { display: block; }
+
+  .mobile-scroll{
+    width: 100%;
+    min-height: 100vh;
+    overflow-y: auto;
+    background: #fff;
+  }
+
+  /* 用来撑开缩放后高度（JS 写 height） */
+  .mobile-scale-wrap{
+    width: 100%;
+    display: block;
+  }
+
+  /* 画板：固定宽 4in，高度由内容决定 */
+  #mobileArtboard{
+    width: 4in;
+    height: auto;
+    transform-origin: top left;
+  }
+
+  .mobile-page{
+    box-sizing: border-box;
+    padding: 0.25in 0.125in;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .m-topbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .m-brand a, .m-topnav a{
+    font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 700;
+    font-size: 10pt;
+    line-height: 10pt;
+    color: #ff2aa1;
+    text-decoration: none;
+  }
+
+  .m-topnav{ display:flex; gap: 0.18in; }
+
+  .m-list{
+    display: flex;
+    flex-direction: column;
+    padding-top: 0.3in;
+  }
+
+  .m-thumb{
+    display: block;
+    width: 3.75in;
+    height: 2.3711in;
+    background: #888;
+    text-decoration: none;
+  }
+  .m-thumb-bg{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .m-meta{
+    margin-top: 0.072in;
+    margin-bottom: 0.3in;
+    font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 8pt;
+    line-height: 10pt;
+    color: #111;
+  }
+
+  .m-footer{
+    margin-top: 0.5in;
+    font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-weight: 400;
+    font-size: 8pt;
+    line-height: 10pt;
+    color: #111;
+  }
 }
