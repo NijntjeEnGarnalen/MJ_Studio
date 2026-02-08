@@ -2,151 +2,278 @@
 <html lang="zh-CN">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Margin Notes — MJ Studio</title>
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="icon" href="../favicon.ico">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Margin Notes — MJ Studio</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="icon" href="../favicon.ico">
 
-    <style>
-        body {
-            background: #1e1e1e;
-        }
+  <style>
+    body { background: #1e1e1e; }
 
-        /* 强力覆盖：把 project 区域里所有文字都拉回你想要的颜色 */
-        .project-main,
-        .project-main *,
-        .bottom,
-        .bottom *,
-        .proj-side,
-        .proj-side * {
-            color: #eaeaea !important;
-            /* 你现在背景很深，建议用浅色文字 */
-            -webkit-text-fill-color: #f9f9f9 !important;
-            /* 防止 style.css 用了 text-fill-color */
-        }
-    </style>
+    /* =========================
+       DESKTOP：强力覆盖浅色文字（保持你现在的效果）
+       ========================= */
+    .project-main,
+    .project-main *,
+    .bottom,
+    .bottom *,
+    .proj-side,
+    .proj-side * {
+      color: #eaeaea !important;
+      -webkit-text-fill-color: #f9f9f9 !important;
+    }
 
+    /* =========================
+       MOBILE：仅手机端生效（按你既定规范）
+       + 深色背景浅色文字
+       + 空白 end-spacer 放在 footer 上边
+       ========================= */
+    .desktop-only { display: block; }
+    .mobile-only  { display: none; }
 
+    @media (max-width: 768px) {
+      .desktop-only { display: none; }
+      .mobile-only  { display: block; }
+
+      .mobile-scroll{
+        width: 100%;
+        min-height: 100vh;
+        overflow-y: auto;
+        background: #1e1e1e;
+      }
+
+      .mobile-scale-wrap{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      #mobileArtboard{
+        width: 4in;
+        height: auto;
+        transform-origin: top left;
+      }
+
+      .mobile-page{
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.25in 0.125in;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .m-topbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .m-brand a,
+      .m-about a{
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 10pt;
+        line-height: 10pt;
+        color: #ff2aa1;
+        text-decoration: none;
+      }
+
+      /* meta 起始高度 = 手机主页首图高度 */
+      .m-proj-meta{
+        margin-top: 0.3in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #f9f9f9;
+      }
+
+      .m-proj-stack{
+        margin-top: 0.072in;
+      }
+
+      .m-proj-stack img{
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .m-proj-stack img + img{
+        margin-top: 0.072in;
+      }
+
+      .m-proj-desc{
+        margin-top: 0.072in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 7pt;
+        line-height: 9pt;
+        color: #f9f9f9;
+      }
+      .m-proj-desc p{ margin: 0; }
+
+      .m-footer{
+        margin-top: 0.5in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #f9f9f9;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- 顶部固定第一行：与主页一致 -->
+  <!-- ===================== -->
+  <!-- DESKTOP：原网页版（不动） -->
+  <!-- ===================== -->
+  <div class="desktop-only">
+
     <div class="top-fixed" id="topFixed">
-        <header class="top">
-            <div class="brand">
-                <a href="../index.html">MJ Studio</a>
-            </div>
-            <nav class="topnav">
-               <a class="index" href="../work.html">Index</a>
-              <a class="work" href="../work.html">Work</a>
-              <a class="about" href="../about.html">About</a>
-            </nav>
-        </header>
+      <header class="top">
+        <div class="brand">
+          <a href="../index.html">MJ Studio</a>
+        </div>
+        <nav class="topnav">
+          <a class="index" href="../list.html">Index</a>
+          <a class="work" href="../index.html">Work</a>
+          <a class="about" href="../about.html">About</a>
+        </nav>
+      </header>
     </div>
 
-    <!-- 顶部占位（JS 会写入高度） -->
     <div class="top-spacer" id="topSpacer"></div>
 
-    <!-- 页面主体：与主页一致 -->
     <div class="stage">
-        <div class="page-sizer" id="pageSizer">
-            <div class="page" id="page">
+      <div class="page-sizer" id="pageSizer">
+        <div class="page" id="page">
 
-                <!-- 项目页内容：同样五列网格（CSS 里用 .project-main / .project-hero / .proj-media 等控制） -->
-                <main class="project-main">
+          <main class="project-main">
 
-                    <!-- 第一行起始高度与主页 01 一致：依赖同样的 top-spacer + margin-top 变量 -->
-                    <section class="project-hero">
+            <section class="project-hero">
 
-                        <!-- 灰色块 01：占左起四列，3:2 -->
-                        <div class="proj-media">
-                            <img src="../images/margin_notes/MN_01.JPG" alt="Margin Notes Image 01">
-                        </div>
+              <div class="proj-media">
+                <img src="../images/margin_notes/MN_01.JPG" alt="Margin Notes Image 01">
+              </div>
 
-                        <!-- 右侧第 5 列：左对齐 -->
-                        <div class="proj-side">
-                            <div class="proj-title">Margin Notes</div>
-                            <div class="proj-sub">Editorial Design, 2024</div>
-                        </div>
+              <div class="proj-side">
+                <div class="proj-title">Margin Notes</div>
+                <div class="proj-sub">Editorial Design, 2024</div>
+              </div>
 
-                    </section>
+            </section>
 
-                    <!-- 灰色块 02–18：每块间隔 = 1 gutter；每块都和第一块同规格 -->
-                    <section class="proj-media-stack">
+            <section class="proj-media-stack">
+              <div class="proj-media"><img src="../images/margin_notes/MN_02.jpg" alt="Margin Notes Image 02"></div>
+              <div class="proj-media"><img src="../images/margin_notes/MN_03.jpg" alt="Margin Notes Image 03"></div>
+              <div class="proj-media"><img src="../images/margin_notes/MN_04.JPG" alt="Margin Notes Image 04"></div>
+              <div class="proj-media"><img src="../images/margin_notes/MN_05.jpg" alt="Margin Notes Image 05"></div>
+              <div class="proj-media"><img src="../images/margin_notes/MN_06.jpg" alt="Margin Notes Image 06"></div>
+              <div class="proj-media"><img src="../images/margin_notes/MN_07.jpg" alt="Margin Notes Image 07"></div>
+              <div class="proj-media"><img src="../images/margin_notes/MN_08.jpg" alt="Margin Notes Image 08"></div>
+              <div class="proj-media"><img src="../images/margin_notes/MN_09.jpg" alt="Margin Notes Image 09"></div>
+              <div class="proj-media"><img src="../images/margin_notes/MN_10.JPG" alt="Margin Notes Image 10"></div>
+              <div class="proj-media"><img src="../images/margin_notes/MN_11.JPG" alt="Margin Notes Image 11"></div>
+              <div class="proj-media"><img src="../images/margin_notes/MN_12.JPG" alt="Margin Notes Image 12"></div>
+            </section>
 
-                        <div class="proj-media">
-                            <img src="../images/margin_notes/MN_02.jpg" alt="Margin Notes Image 02">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/margin_notes/MN_03.jpg" alt="Margin Notes Image 03">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/margin_notes/MN_04.JPG" alt="Margin Notes Image 04">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/margin_notes/MN_05.jpg" alt="Margin Notes Image 05">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/margin_notes/MN_06.jpg" alt="Margin Notes Image 06">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/margin_notes/MN_07.jpg" alt="Margin Notes Image 07">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/margin_notes/MN_08.jpg" alt="Margin Notes Image 08">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/margin_notes/MN_09.jpg" alt="Margin Notes Image 09">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/margin_notes/MN_10.JPG" alt="Margin Notes Image 10">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/margin_notes/MN_11.JPG" alt="Margin Notes Image 11">
-                        </div>
-                        <div class="proj-media">
-                            <img src="../images/margin_notes/MN_12.JPG" alt="Margin Notes Image 12">
-                        </div>
+            <section class="proj-text">
+              <p>
+                Margin Notes is a typographic and editorial exploration inspired by Sue Black's <br><em>All That
+                  Remains: A Life in Death</em>, which weaves memoir with forensic science to reflect on life,
+                death, and the stories human remains tell. Drawing from the chapter “Silent Teacher,” the
+                project honors cadavers as invaluable educators in medicine and acknowledges the generosity
+                of body donors.
+                <br><br>
+                The book integrates fold-out spreads within the page structure to visualize medical tools
+                referenced in the text, extending reading into a tactile and spatial experience. Numerical
+                tags are introduced as recurring visual markers, appearing where cadavers are first
+                mentioned and continuing throughout the book to suggest memory, presence, and quiet
+                continuity.
+              </p>
+              <div class="end-spacer"></div>
+            </section>
 
-                    </section>
+          </main>
 
+          <footer class="bottom">
+            Mabel Chen © 2026
+          </footer>
 
-                    <!-- 段落：只占左起两列；与灰色块间隔 = 1 gutter；无 hyphen；尽量 no widow（由 CSS 控制） -->
-                    <section class="proj-text">
-                        <p>
-                            Margin Notes is a typographic and editorial exploration inspired by Sue Black's <br><em>All
-                                That
-                                Remains: A Life in Death</em>, which weaves memoir with forensic science to reflect on
-                            life,
-                            death, and the stories human remains tell. Drawing from the chapter “Silent Teacher,” the
-                            project honors cadavers as invaluable educators in medicine and acknowledges the generosity
-                            of body donors.
-                            <br><br>
-                            The book integrates fold-out spreads within the page structure to visualize medical tools
-                            referenced in the text, extending reading into a tactile and spatial experience. Numerical
-                            tags are introduced as recurring visual markers, appearing where cadavers are first
-                            mentioned and continuing throughout the book to suggest memory, presence, and quiet
-                            continuity.
-
-                        </p>
-                        <div class="end-spacer"></div>
-                    </section>
-
-                </main>
-
-                <!-- 底部：与主页一致 -->
-                <footer class="bottom">
-                    Mabel Chen © 2026
-                </footer>
-
-            </div>
         </div>
+      </div>
     </div>
 
-    <!-- 缩放与顶栏占位同步：与主页一致 -->
-    <script src="../scale.js"></script>
+  </div>
+
+  <!-- ===================== -->
+  <!-- MOBILE：按你既定规范新增（空白 end-spacer 在 footer 上边） -->
+  <!-- ===================== -->
+  <div class="mobile-only">
+    <div class="mobile-scroll">
+
+      <div class="mobile-scale-wrap" id="mobileScaleWrap">
+        <div class="mobile-artboard" id="mobileArtboard" data-artboard-w="4">
+          <div class="mobile-page">
+
+            <header class="m-topbar">
+              <div class="m-brand"><a href="../work.html">MJ Studio</a></div>
+              <div class="m-about"><a href="../about.html">About</a></div>
+            </header>
+
+            <div class="m-proj-meta">
+              <div>Margin Notes, 2024</div>
+              <div>Editorial Design</div>
+            </div>
+
+            <section class="m-proj-stack">
+              <img src="../images/margin_notes/MN_01.JPG" alt="Margin Notes Image 01">
+              <img src="../images/margin_notes/MN_02.jpg" alt="Margin Notes Image 02">
+              <img src="../images/margin_notes/MN_03.jpg" alt="Margin Notes Image 03">
+              <img src="../images/margin_notes/MN_04.JPG" alt="Margin Notes Image 04">
+              <img src="../images/margin_notes/MN_05.jpg" alt="Margin Notes Image 05">
+              <img src="../images/margin_notes/MN_06.jpg" alt="Margin Notes Image 06">
+              <img src="../images/margin_notes/MN_07.jpg" alt="Margin Notes Image 07">
+              <img src="../images/margin_notes/MN_08.jpg" alt="Margin Notes Image 08">
+              <img src="../images/margin_notes/MN_09.jpg" alt="Margin Notes Image 09">
+              <img src="../images/margin_notes/MN_10.JPG" alt="Margin Notes Image 10">
+              <img src="../images/margin_notes/MN_11.JPG" alt="Margin Notes Image 11">
+              <img src="../images/margin_notes/MN_12.JPG" alt="Margin Notes Image 12">
+            </section>
+
+            <section class="m-proj-desc">
+              <p>
+                Margin Notes is a typographic and editorial exploration inspired by Sue Black's <em>All That
+                  Remains: A Life in Death</em>, which weaves memoir with forensic science to reflect on life,
+                death, and the stories human remains tell. Drawing from the chapter “Silent Teacher,” the
+                project honors cadavers as invaluable educators in medicine and acknowledges the generosity
+                of body donors.
+                <br><br>
+                The book integrates fold-out spreads within the page structure to visualize medical tools
+                referenced in the text, extending reading into a tactile and spatial experience. Numerical
+                tags are introduced as recurring visual markers, appearing where cadavers are first
+                mentioned and continuing throughout the book to suggest memory, presence, and quiet
+                continuity.
+              </p>
+            </section>
+
+            <!-- ✅ 空白占位：就在 footer 上边 -->
+            <div class="end-spacer"></div>
+
+            <footer class="m-footer">
+              Mabel Chen © 2026
+            </footer>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../scale.js"></script>
 </body>
 
 </html>
