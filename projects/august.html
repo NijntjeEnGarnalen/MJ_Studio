@@ -12,86 +12,211 @@
     body {
       background: #f9f9f9;
     }
-  </style>
 
+    /* =========================
+       MOBILE：仅手机端生效
+       ========================= */
+    .desktop-only { display: block; }
+    .mobile-only  { display: none; }
+
+    @media (max-width: 768px) {
+      .desktop-only { display: none; }
+      .mobile-only  { display: block; }
+
+      .mobile-scroll{
+        width: 100%;
+        min-height: 100vh;
+        overflow-y: auto;
+        background: #f9f9f9;
+      }
+
+      .mobile-scale-wrap{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      #mobileArtboard{
+        width: 4in;
+        height: auto;
+        transform-origin: top left;
+      }
+
+      .mobile-page{
+        box-sizing: border-box;
+        padding: 0.25in 0.125in;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .m-topbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .m-brand a,
+      .m-about a{
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 10pt;
+        line-height: 10pt;
+        color: #ff2aa1;
+        text-decoration: none;
+      }
+
+      /* Project meta：起始高度 = 手机主页首图高度 */
+      .m-proj-meta{
+        margin-top: 0.3in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #111;
+      }
+
+      .m-proj-stack{
+        margin-top: 0.072in;
+      }
+
+      .m-proj-stack img{
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .m-proj-stack img + img{
+        margin-top: 0.072in;
+      }
+
+      .m-proj-desc{
+        margin-top: 0.072in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 7pt;
+        line-height: 9pt;
+        color: #111;
+      }
+
+      .m-proj-desc p{
+        margin: 0;
+      }
+
+      .m-footer{
+        margin-top: 0.5in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #111;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-  <!-- 顶部固定第一行：与主页一致 -->
-  <div class="top-fixed" id="topFixed">
-    <header class="top">
-      <div class="brand">
-        <a href="../work.html">MJ Studio</a>
-      </div>
-      <nav class="topnav">
-        <a class="index" href="../index.html">Index</a>
-      <a class="work" href="../work.html">Work</a>
-      <a class="about" href="../about.html">About</a>
-      </nav>
-    </header>
-  </div>
+  <!-- ===================== -->
+  <!-- DESKTOP：原网页版（结构不改） -->
+  <!-- ===================== -->
+  <div class="desktop-only">
 
-  <!-- 顶部占位（JS 会写入高度） -->
-  <div class="top-spacer" id="topSpacer"></div>
+    <div class="top-fixed" id="topFixed">
+      <header class="top">
+        <div class="brand">
+          <a href="../index.html">MJ Studio</a>
+        </div>
+        <nav class="topnav">
+          <a class="index" href="../list.html">Index</a>
+          <a class="work" href="../index.html">Work</a>
+          <a class="about" href="../about.html">About</a>
+        </nav>
+      </header>
+    </div>
 
-  <!-- 页面主体：与主页一致 -->
-  <div class="stage">
-    <div class="page-sizer" id="pageSizer">
-      <div class="page" id="page">
+    <div class="top-spacer" id="topSpacer"></div>
 
-        <!-- 项目页内容：同样五列网格（CSS 里用 .project-main / .project-hero / .proj-media 等控制） -->
-        <main class="project-main">
+    <div class="stage">
+      <div class="page-sizer" id="pageSizer">
+        <div class="page" id="page">
 
-          <!-- 第一行起始高度与主页 01 一致：依赖同样的 top-spacer + margin-top 变量 -->
-          <section class="project-hero">
+          <main class="project-main">
 
-            <!-- 灰色块 01：占左起四列，3:2 -->
-            <div class="proj-media fit-h">
-              <img src="../images/august/august_01.png" alt="August Image 01">
-            </div>
+            <section class="project-hero">
 
+              <div class="proj-media fit-h">
+                <img src="../images/august/august_01.png" alt="August Image 01">
+              </div>
 
-            <!-- 右侧第 5 列：左对齐 -->
-            <div class="proj-side">
-              <div class="proj-title">August</div>
-              <div class="proj-sub">Poster Design, 2024</div>
-              <div class="proj-sub"><em>"I miss being with you."</em></div>
-            </div>
+              <div class="proj-side">
+                <div class="proj-title">August</div>
+                <div class="proj-sub">Poster Design, 2024</div>
+                <div class="proj-sub"><em>"I miss being with you."</em></div>
+              </div>
 
-          </section>
+            </section>
 
-          <!-- 灰色块 02–18：每块间隔 = 1 gutter；每块都和第一块同规格 -->
-          <section class="proj-media-stack">
+            <section class="proj-media-stack">
+              <!--（此项目无额外图片，保持空结构即可）-->
+            </section>
 
+            <section class="proj-text">
+              <p></p>
+              <div class="end-spacer"></div>
+            </section>
 
+          </main>
 
-
-
-
-          </section>
-
-
-          <!-- 段落：只占左起两列；与灰色块间隔 = 1 gutter；无 hyphen；尽量 no widow（由 CSS 控制） -->
-          <section class="proj-text">
-            <p>
-
-            </p>
+          <footer class="bottom">
+            Mabel Chen © 2026
             <div class="end-spacer"></div>
-          </section>
+          </footer>
 
-        </main>
-
-        <!-- 底部：与主页一致 -->
-        <footer class="bottom">
-          Mabel Chen © 2026
-        </footer>
-
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- 缩放与顶栏占位同步：与主页一致 -->
+  <!-- ===================== -->
+  <!-- MOBILE：与手机项目页系统完全一致 -->
+  <!-- ===================== -->
+  <div class="mobile-only">
+    <div class="mobile-scroll">
+
+      <div class="mobile-scale-wrap" id="mobileScaleWrap">
+        <div class="mobile-artboard" id="mobileArtboard" data-artboard-w="4">
+          <div class="mobile-page">
+
+            <header class="m-topbar">
+              <div class="m-brand"><a href="../work.html">MJ Studio</a></div>
+              <div class="m-about"><a href="../about.html">About</a></div>
+            </header>
+
+            <div class="m-proj-meta">
+              <div>August, 2024</div>
+              <div>Poster Design</div>
+            </div>
+
+            <section class="m-proj-stack">
+              <img src="../images/august/august_01.png" alt="August Image 01">
+            </section>
+
+            <!-- 无 description：这一页按你的原始内容保持为空 -->
+            <section class="m-proj-desc"></section>
+
+            <div class="end-spacer"></div>
+            <footer class="m-footer">
+              Mabel Chen © 2026
+              
+            </footer>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <script src="../scale.js"></script>
 </body>
 
