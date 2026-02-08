@@ -22,8 +22,8 @@
   }
 
   /* =========================
-     MOBILE (新增：4in 宽画板缩放 + 撑高 + 排序)
-     需要 HTML 里存在：
+     MOBILE (4in 宽画板：按屏幕宽度永远等比缩放 + 撑高 + 排序)
+     需要 HTML：
        - #mobileArtboard  (data-artboard-w="4")
        - #mobileScaleWrap
        - #mProjectList 内有 .m-project[data-order]
@@ -49,31 +49,34 @@
     const wrap = document.getElementById("mobileScaleWrap");
     if (!art || !wrap) return;
 
-    // 只在手机断点做；离开手机断点时清理
+    // 离开手机断点时清理
     if (!MOBILE_MQ.matches) {
       art.style.transform = "";
       wrap.style.height = "";
       return;
     }
 
-    const wIn = parseFloat(art.dataset.artboardW || "4");
-    const artW = wIn * 96; // CSS inch -> px
-
-    // ✅ 只按宽度 fit（高度由内容决定，可滚动）
-    const vw = window.innerWidth;
-    const scale = Math.min(1, vw / artW);
-
-    // 先去掉 transform，拿到未缩放真实高度
+    // 先去掉 transform，获取“设计宽度”的真实 px（4in => px）
     art.style.transform = "none";
 
-    // 断点切换（desktop→mobile）时，这里必须等一帧再量高度，否则可能量到 0
+    // 断点切换/样式切换时，必须等一帧再测量
     requestAnimationFrame(() => {
+      // 用实际渲染宽度算（更稳，不依赖 96px/in 的假设）
+      const designW = art.getBoundingClientRect().width;
+
+      // 视口宽用 clientWidth 更稳（避免包含滚动条）
+      const vw = document.documentElement.clientWidth;
+
+      // ✅ 关键：永远按宽度贴满屏幕（可放大也可缩小）
+      const scale = vw / designW;
+
+      // 高度：未缩放内容高度
       const rawH = art.scrollHeight || art.getBoundingClientRect().height;
 
       art.style.transformOrigin = "top left";
       art.style.transform = `scale(${scale})`;
 
-      // ✅ 关键：撑开缩放后的高度，让页面能滚动，不会“都消失”
+      // ✅ 撑开缩放后高度，让页面可以正常滚动
       wrap.style.height = `${rawH * scale}px`;
     });
   }
@@ -94,7 +97,7 @@
   window.addEventListener("resize", refreshAll, { passive: true });
   window.addEventListener("load", refreshAll);
 
-  // ✅ 断点变化时也刷新（电脑缩到手机/手机拉回电脑）
+  // 断点变化时也刷新（电脑缩到手机/手机拉回电脑）
   if (MOBILE_MQ.addEventListener) {
     MOBILE_MQ.addEventListener("change", refreshAll);
   } else {
