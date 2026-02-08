@@ -2,129 +2,266 @@
 <html lang="zh-CN">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Punk 2025 — MJ Studio</title>
-    <link rel="stylesheet" href="../style.css" />
-    <link rel="icon" href="../favicon.ico">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Punk 2025 — MJ Studio</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="icon" href="../favicon.ico">
 
-    <style>
-        body {
-            background: #191919;
-            /* pink: E87BB5 */
-        }
+  <style>
+    body { background: #191919; /* pink: E87BB5 */ }
 
-        /* 强力覆盖：把 project 区域里所有文字都拉回你想要的颜色 */
-        .project-main,
-        .project-main *,
-        .bottom,
-        .bottom *,
-        .proj-side,
-        .proj-side * {
-            color: #eaeaea !important;
-            /* 你现在背景很深，建议用浅色文字 */
-            -webkit-text-fill-color: #eaeaea !important;
-            /* 防止 style.css 用了 text-fill-color */
-        }
-    </style>
+    /* =========================
+       DESKTOP：强力覆盖浅色文字（保持你现在的效果）
+       ========================= */
+    .project-main,
+    .project-main *,
+    .bottom,
+    .bottom *,
+    .proj-side,
+    .proj-side * {
+      color: #eaeaea !important;
+      -webkit-text-fill-color: #eaeaea !important;
+    }
+
+    /* =========================
+       MOBILE：仅手机端生效（按你既定规范）
+       + 深色背景浅色文字
+       + 空白 end-spacer 放在 footer 上边
+       ========================= */
+    .desktop-only { display: block; }
+    .mobile-only  { display: none; }
+
+    @media (max-width: 768px) {
+      .desktop-only { display: none; }
+      .mobile-only  { display: block; }
+
+      .mobile-scroll{
+        width: 100%;
+        min-height: 100vh;
+        overflow-y: auto;
+        background: #191919;
+      }
+
+      .mobile-scale-wrap{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      #mobileArtboard{
+        width: 4in;
+        height: auto;
+        transform-origin: top left;
+      }
+
+      .mobile-page{
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.25in 0.125in;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .m-topbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .m-brand a,
+      .m-about a{
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 10pt;
+        line-height: 10pt;
+        color: #ff2aa1;
+        text-decoration: none;
+      }
+
+      /* meta 起始高度 = 手机主页首图高度 */
+      .m-proj-meta{
+        margin-top: 0.3in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #eaeaea;
+      }
+
+      .m-proj-stack{
+        margin-top: 0.072in;
+      }
+
+      .m-proj-stack img{
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .m-proj-stack img + img{
+        margin-top: 0.072in;
+      }
+
+      .m-proj-desc{
+        margin-top: 0.072in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 7pt;
+        line-height: 9pt;
+        color: #eaeaea;
+      }
+      .m-proj-desc p{ margin: 0; }
+
+      .m-footer{
+        margin-top: 0.5in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #eaeaea;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <!-- 顶部固定第一行 -->
+  <!-- ===================== -->
+  <!-- DESKTOP：原网页版（不动） -->
+  <!-- ===================== -->
+  <div class="desktop-only">
+
     <div class="top-fixed" id="topFixed">
-        <header class="top">
-            <div class="brand">
-                <a href="../work.html">MJ Studio</a>
-            </div>
-            <nav class="topnav">
-                <a class="index" href="../index.html">Index</a>
-      <a class="work" href="../work.html">Work</a>
-      <a class="about" href="../about.html">About</a>
-            </nav>
-        </header>
+      <header class="top">
+        <div class="brand">
+          <a href="../index.html">MJ Studio</a>
+        </div>
+        <nav class="topnav">
+          <a class="index" href="../list.html">Index</a>
+          <a class="work" href="../index.html">Work</a>
+          <a class="about" href="../about.html">About</a>
+        </nav>
+      </header>
     </div>
 
-    <!-- 顶部占位 -->
     <div class="top-spacer" id="topSpacer"></div>
 
-    <!-- 页面主体 -->
     <div class="stage">
-        <div class="page-sizer" id="pageSizer">
-            <div class="page" id="page">
+      <div class="page-sizer" id="pageSizer">
+        <div class="page" id="page">
 
-                <main class="project-main">
+          <main class="project-main">
 
-                    <!-- Hero -->
-                    <section class="project-hero">
+            <section class="project-hero">
 
-                        <div class="proj-media">
-                            <img src="../images/punk/punk_01.JPG" alt="Punk Image 01">
-                        </div>
+              <div class="proj-media">
+                <img src="../images/punk/punk_01.JPG" alt="Punk Image 01">
+              </div>
 
-                        <div class="proj-side">
-                            <div class="proj-title">Punk</div>
-                            <div class="proj-sub">Newspaper, 2025</div>
-                            <div class="proj-sub">Special Thanks to Brad Bartlett</div>
-                        </div>
+              <div class="proj-side">
+                <div class="proj-title">Punk</div>
+                <div class="proj-sub">Newspaper, 2025</div>
+                <div class="proj-sub">Special Thanks to Brad Bartlett</div>
+              </div>
 
-                    </section>
+            </section>
 
-                    <!-- 其余 6 张 -->
-                    <section class="proj-media-stack">
+            <section class="proj-media-stack">
+              <div class="proj-media"><img src="../images/punk/punk_02.png" alt="Punk Image 02"></div>
+              <div class="proj-media"><img src="../images/punk/punk_03.png" alt="Punk Image 03"></div>
+              <div class="proj-media"><img src="../images/punk/punk_04.png" alt="Punk Image 04"></div>
+              <div class="proj-media"><img src="../images/punk/punk_05.png" alt="Punk Image 05"></div>
+              <div class="proj-media"><img src="../images/punk/punk_06.png" alt="Punk Image 06"></div>
+            </section>
 
-                        <div class="proj-media">
-                            <img src="../images/punk/punk_02.png" alt="Punk Image 02">
-                        </div>
+            <section class="proj-text">
+              <p>
+                This project focuses on British punk culture, examining its
+                social background, unemployed youth, key figures, DIY ethos,
+                and the role of zines as tools for expression and distribution.
+                It also traces punk's conceptual connections to Dada and the Situationist
+                International, highlighting its critical stance toward authority and
+                mass culture. Rather than adopting a chaotic visual language, the
+                project uses a relatively rational typographic system to frame punk
+                as an intentional cultural and political movement. Pink is introduced
+                as a deliberate color choice, reflecting punk's history of provocation,
+                contradiction, and resistance to fixed meanings.
+              </p>
+              <div class="end-spacer"></div>
+            </section>
 
-                        <div class="proj-media">
-                            <img src="../images/punk/punk_03.png" alt="Punk Image 03">
-                        </div>
+          </main>
 
-                        <div class="proj-media">
-                            <img src="../images/punk/punk_04.png" alt="Punk Image 04">
-                        </div>
+          <footer class="bottom">
+            Mabel Chen © 2026
+          </footer>
 
-                        <div class="proj-media">
-                            <img src="../images/punk/punk_05.png" alt="Punk Image 05">
-                        </div>
-
-                        <div class="proj-media">
-                            <img src="../images/punk/punk_06.png" alt="Punk Image 06">
-                        </div>
-
-
-                    </section>
-
-                    <!-- 可选文案 -->
-                    <section class="proj-text">
-                        <p>
-                            This project focuses on British punk culture, examining its
-                            social background, unemployed youth, key figures, DIY ethos,
-                            and the role of zines as tools for expression and distribution.
-                            It also traces punk's conceptual connections to Dada and the Situationist
-                            International, highlighting its critical stance toward authority and
-                            mass culture. Rather than adopting a chaotic visual language, the
-                            project uses a relatively rational typographic system to frame punk
-                            as an intentional cultural and political movement. Pink is introduced
-                            as a deliberate color choice, reflecting punk's history of provocation,
-                            contradiction, and resistance to fixed meanings.
-
-                        </p>
-                        <div class="end-spacer"></div>
-                    </section>
-
-                </main>
-
-                <footer class="bottom">
-                    Mabel Chen © 2026
-                </footer>
-
-            </div>
         </div>
+      </div>
     </div>
 
-    <script src="../scale.js"></script>
+  </div>
+
+  <!-- ===================== -->
+  <!-- MOBILE：按你既定规范新增（空白 end-spacer 在 footer 上边） -->
+  <!-- ===================== -->
+  <div class="mobile-only">
+    <div class="mobile-scroll">
+
+      <div class="mobile-scale-wrap" id="mobileScaleWrap">
+        <div class="mobile-artboard" id="mobileArtboard" data-artboard-w="4">
+          <div class="mobile-page">
+
+            <header class="m-topbar">
+              <div class="m-brand"><a href="../work.html">MJ Studio</a></div>
+              <div class="m-about"><a href="../about.html">About</a></div>
+            </header>
+
+            <div class="m-proj-meta">
+              <div>Punk, 2025</div>
+              <div>Newspaper</div>
+              <div>Special Thanks to Brad Bartlett</div>
+            </div>
+
+            <section class="m-proj-stack">
+              <img src="../images/punk/punk_01.JPG" alt="Punk Image 01">
+              <img src="../images/punk/punk_02.png" alt="Punk Image 02">
+              <img src="../images/punk/punk_03.png" alt="Punk Image 03">
+              <img src="../images/punk/punk_04.png" alt="Punk Image 04">
+              <img src="../images/punk/punk_05.png" alt="Punk Image 05">
+              <img src="../images/punk/punk_06.png" alt="Punk Image 06">
+            </section>
+
+            <section class="m-proj-desc">
+              <p>
+                This project focuses on British punk culture, examining its
+                social background, unemployed youth, key figures, DIY ethos,
+                and the role of zines as tools for expression and distribution.
+                It also traces punk's conceptual connections to Dada and the Situationist
+                International, highlighting its critical stance toward authority and
+                mass culture. Rather than adopting a chaotic visual language, the
+                project uses a relatively rational typographic system to frame punk
+                as an intentional cultural and political movement. Pink is introduced
+                as a deliberate color choice, reflecting punk's history of provocation,
+                contradiction, and resistance to fixed meanings.
+              </p>
+            </section>
+
+            <!-- ✅ 空白占位：就在 footer 上边 -->
+            <div class="end-spacer"></div>
+
+            <footer class="m-footer">
+              Mabel Chen © 2026
+            </footer>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../scale.js"></script>
 </body>
 
 </html>
