@@ -9,217 +9,474 @@
   <link rel="icon" href="./favicon.ico">
 
   <style>
-    body { background:#ffffff; }
+    body { background: #ffffff; }
 
-    /* ===== About page grid ===== */
-    .about-main{
-      margin-top: var(--row-gap-top);   /* same as index 01 */
-      display:grid;
+    /* ===== About page grid (DESKTOP 原样保留) ===== */
+    .about-main {
+      margin-top: var(--row-gap-top);
+      display: grid;
       grid-template-columns: repeat(5, var(--col));
       column-gap: var(--gutter);
-      align-items:start;
+      align-items: start;
     }
 
-    /* ===== Images (same ratio as index) ===== */
     .about-photo,
-    .about-photo-right{
-      width:100%;
+    .about-photo-right {
+      width: 100%;
       aspect-ratio: 3 / 2;
-      background:#8c8c8c;
-      overflow:hidden;
+      background: #8c8c8c;
+      overflow: hidden;
     }
 
-    .about-photo{ grid-column: 1 / 2; }
-    .about-photo-right{ grid-column: 5 / 6; }
+    .about-photo { grid-column: 1 / 2; }
+    .about-photo-right { grid-column: 5 / 6; }
 
     .about-photo img,
-    .about-photo-right img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
+    .about-photo-right img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
-    .about-photo-right.second{
-      margin-top: var(--gutter);
-    }
-
-    /* ===== Typography ===== */
+    .about-photo-right.second { margin-top: var(--gutter); }
 
     /* 12pt / 15pt */
     .about-bio,
     .about-links,
-    .about-h{
+    .about-h {
       font-size: var(--fs-12);
       line-height: var(--lh-16);
       font-weight: 400;
-      color:#111;
+      color: #111;
     }
 
     /* 10pt / 13pt */
     .about-edu,
-    .about-exp{
+    .about-exp {
       font-size: var(--fs-10);
       line-height: var(--lh-14);
       font-weight: 400;
-      color:#a2a2a2;
+      color: #a2a2a2;
     }
 
-    /* ===== Layout ===== */
-
-    .about-bio{
+    .about-bio {
       grid-column: 2 / 5;
       margin: 0;
     }
 
-    .about-links{
+    .about-links {
       grid-column: 1 / 2;
-      margin-top: calc(var(--gutter) / 2); /* half vertical gutter */
+      margin-top: calc(var(--gutter) / 2);
     }
 
-    .about-links a{
-      text-decoration:none;
-      color:#111;
-      display:block;
-    }
-    .about-links a:hover{ text-decoration:underline; }
-
-    .about-h{
-      margin: 0 0 calc(6px * var(--s)) 0;
+    .about-links a {
+      text-decoration: none;
+      color: #111;
+      display: block;
     }
 
-    .about-edu{
+    .about-links a:hover { text-decoration: underline; }
+
+    .about-h { margin: 0 0 calc(6px * var(--s)) 0; }
+
+    .about-edu {
       grid-column: 2 / 3;
       margin-top: calc(var(--gutter) / 2);
     }
 
-    .about-exp{
+    .about-exp {
       grid-column: 3 / 5;
       margin-top: calc(var(--gutter) / 2);
     }
 
-    .bottom{
-      margin-top: calc(2 * var(--inch) * var(--s));
+    .bottom { margin-top: calc(2 * var(--inch) * var(--s)); }
+
+    /* =========================
+       MOBILE：仅手机端生效（4in 宽画板等比缩放）
+       ========================= */
+    .desktop-only { display: block; }
+    .mobile-only  { display: none; }
+
+    @media (max-width: 768px) {
+      .desktop-only { display: none; }
+      .mobile-only  { display: block; }
+
+      .mobile-scroll{
+        width: 100%;
+        min-height: 100vh;
+        overflow-y: auto;
+        background: #ffffff;
+      }
+
+      .mobile-scale-wrap{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      #mobileArtboard{
+        width: 4in;
+        height: auto;
+        transform-origin: top left;
+      }
+
+      .mobile-page{
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.25in 0.125in; /* 上下0.25in，左右0.125in */
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* topnav 与手机主页一致：左 MJ Studio，右 About */
+      .m-topbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .m-brand a,
+      .m-about a{
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 10pt;
+        line-height: 10pt;
+        color: #ff2aa1;
+        text-decoration: none;
+      }
+
+      /* My name is 起始高度 = 手机主页 project name 起始高度 */
+      .m-bio{
+        margin-top: 0.3in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #111;
+      }
+      .m-bio p{ margin: 0; }
+
+      /* bio -> 图片：0.072in */
+      .m-photo{
+        margin-top: 0.072in;
+        width: 100%;
+        aspect-ratio: 3 / 2;
+        background: #8c8c8c;
+        overflow: hidden;
+      }
+      .m-photo img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      /* 图片 -> links：0.072in */
+      .m-links{
+        margin-top: 0.072in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #111;
+      }
+      .m-links a{
+        text-decoration: none;
+        color: #111;
+        display: block;
+      }
+      .m-links a:hover{ text-decoration: underline; }
+
+      /* Resume -> Education：0.3in */
+      .m-edu{
+        margin-top: 0.3in;
+      }
+
+      /* 标题：8pt/10pt（其余都是 8/10） */
+      .m-h{
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #111;
+        margin: 0;
+      }
+
+      /* 标题与内容间隔 0.072in */
+      .m-block{
+        margin-top: 0.072in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 7pt;
+        line-height: 9pt;
+        color: #a2a2a2;
+      }
+      .m-block p{ margin: 0; }
+
+      /* BE -> Experience：0.3in */
+      .m-exp{
+        margin-top: 0.3in;
+      }
+
+      /* Intern Supervisor -> Language：0.3in */
+      .m-lang{
+        margin-top: 0.3in;
+      }
+
+      /* footer：不变（8/10） */
+      .m-footer{
+        margin-top: 0.5in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #111;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <!-- 顶部固定第一行 -->
-  <div class="top-fixed" id="topFixed">
-    <header class="top">
-      <div class="brand">
-        <a href="./work.html">MJ Studio</a>
+  <!-- ===================== -->
+  <!-- DESKTOP：原网页版（完全不动） -->
+  <!-- ===================== -->
+  <div class="desktop-only">
+
+    <!-- 顶部固定第一行 -->
+    <div class="top-fixed" id="topFixed">
+      <header class="top">
+        <div class="brand">
+          <a href="./index.html">MJ Studio</a>
+        </div>
+        <nav class="topnav">
+          <a class="index" href="./list.html">Index</a>
+          <a class="work" href="./index.html">Work</a>
+          <a class="about" href="./about.html">About</a>
+        </nav>
+      </header>
+    </div>
+
+    <div class="top-spacer" id="topSpacer"></div>
+
+    <div class="stage">
+      <div class="page-sizer">
+        <div class="page">
+
+          <main class="about-main">
+
+            <!-- Row 1 -->
+            <div class="about-photo">
+              <img src="./images/about_01.JPG" alt="Portrait 01">
+            </div>
+
+            <p class="about-bio">
+              My name is Mabel.<br>I am a designer interested in systems, narratives, and the emotional traces embedded in
+              everyday life.<br>My work often begins with close observation of objects, environments, and behaviors and
+              translates these findings into visual forms and interactive experiences. Through research-driven design, I
+              explore how structure, memory, and interaction shape the way people perceive and engage with the world
+              around them.
+            </p>
+
+            <div class="about-photo-right">
+              <img src="./images/about_02.JPG" alt="Portrait 02">
+            </div>
+
+            <!-- Row 2 -->
+            <div class="about-links">
+              <a href="mailto:aestatis511@gmail.com">aestatis511@gmail.com</a>
+              <a href="https://www.linkedin.com/in/mabel-chen-61757a385/" target="_blank" rel="noopener">LinkedIn</a>
+              <a href="https://www.instagram.com/aestatis_mare?igsh=OGQ5ZDc2ODk2ZA==" target="_blank"
+                rel="noopener">Instagram</a>
+              <a class="resume-hover" href="mailto:aestatis511@gmail.com?subject=Resume Request">
+                Resume <span class="resume-tip">Available Upon Request</span>
+              </a>
+            </div>
+
+            <div class="about-edu">
+              <div class="about-h">Education</div>
+
+              ArtCenter College of Design<br>
+              Sep. 2025 - July. 2027<br>
+              MFA in Graphic Design<br><br>
+
+              Peking University<br>
+              Sep. 2022 - July. 2024<br>
+              MTI in Japanese Translation<br><br>
+
+              East China Normal University<br>
+              Sep. 2017 - July. 2021<br>
+              BE in Software Engineering<br><br><br>
+
+              <div class="about-h">Language</div>
+              Mandarin (Native)<br>
+              English (Advanced)<br>
+              Japanese (Advanced)
+            </div>
+
+            <div class="about-exp">
+              <div class="about-h">Experience</div>
+
+              Shanghai Dagong Auction Co., Ltd.<br>
+              Apr. 2024 - Aug. 2024<br>
+              Director of Online Auction<br><br>
+
+              Shanghai Cangyuan Industrial Co., Ltd.<br>
+              Jan. 2024 - Apr. 2024<br>
+              Japanese Translation Intern<br><br>
+
+              Beijing Science and Technology Publishing Co., Ltd.<br>
+              Oct. 2023 - Dec. 2023<br>
+              Editorial Intern, Children's Department<br><br>
+
+              Shanghai Soar Information Technology Co., Ltd.<br>
+              Oct. 2021 - Dec. 2021<br>
+              Japanese Language Intern<br><br>
+
+              Shanghai Fuao Construction Technology Co., Ltd.<br>
+              Sep. 2020 - Dec. 2020<br>
+              Frontend Intern<br><br>
+
+              Shanghai Fanhua Auction Co., Ltd.<br>
+              Jul. 2017 - Aug. 2017<br>
+              Intern Supervisor
+            </div>
+
+            <div class="about-photo-right second">
+              <img src="./images/about_03.jpeg" alt="Portrait 03">
+            </div>
+
+          </main>
+
+          <footer class="bottom">
+            <div class="footer-inner">Mabel Chen © 2026</div>
+          </footer>
+
+        </div>
       </div>
-      <nav class="topnav">
-        <a class="index" href="./index.html">Index</a>
-        <a class="work" href="./work.html">Work</a>
-        <a class="about" href="./about.html">About</a>
-      </nav>
-    </header>
+    </div>
+
   </div>
 
-  <div class="top-spacer" id="topSpacer"></div>
+  <!-- ===================== -->
+  <!-- MOBILE：4in 宽画板（等比缩放），topnav/footer 不变 -->
+  <!-- ===================== -->
+  <div class="mobile-only">
+    <div class="mobile-scroll">
 
-  <div class="stage">
-    <div class="page-sizer">
-      <div class="page">
+      <div class="mobile-scale-wrap" id="mobileScaleWrap">
+        <div class="mobile-artboard" id="mobileArtboard" data-artboard-w="4">
+          <div class="mobile-page">
 
-        <main class="about-main">
+            <header class="m-topbar">
+              <div class="m-brand"><a href="./work.html">MJ Studio</a></div>
+              <div class="m-about"><a href="./about.html">About</a></div>
+            </header>
 
-          <!-- Row 1 -->
-          <div class="about-photo">
-            <img src="./images/about_01.JPG" alt="Portrait 01">
+            <!-- bio：起始高度同手机主页 project name -->
+            <section class="m-bio">
+              <p>
+                My name is Mabel.<br>
+                I am a designer interested in systems, narratives, and the emotional traces embedded in everyday life.<br>
+                My work often begins with close observation of objects, environments, and behaviors and translates these findings into visual forms and interactive experiences. Through research-driven design, I explore how structure, memory, and interaction shape the way people perceive and engage with the world around them.
+              </p>
+            </section>
+
+            <!-- 图片：与 bio 距离 0.072in -->
+            <div class="m-photo">
+              <img src="./images/about_02.JPG" alt="Portrait 02">
+            </div>
+
+            <!-- links：与图片距离 0.072in（保持跳转功能） -->
+            <nav class="m-links">
+              <a href="mailto:aestatis511@gmail.com">aestatis511@gmail.com</a>
+              <a href="https://www.linkedin.com/in/mabel-chen-61757a385/" target="_blank" rel="noopener">LinkedIn</a>
+              <a href="https://www.instagram.com/aestatis_mare?igsh=OGQ5ZDc2ODk2ZA==" target="_blank"
+                rel="noopener">Instagram</a>
+              <a href="mailto:aestatis511@gmail.com?subject=Resume Request">Resume</a>
+            </nav>
+
+            <!-- Education：Resume 下 0.3in -->
+            <section class="m-edu">
+              <div class="m-h">Education</div>
+              <div class="m-block">
+                <p>
+                  ArtCenter College of Design<br>
+                  Sep. 2025 - July. 2027<br>
+                  MFA in Graphic Design<br><br>
+
+                  Peking University<br>
+                  Sep. 2022 - July. 2024<br>
+                  MTI in Japanese Translation<br><br>
+
+                  East China Normal University<br>
+                  Sep. 2017 - July. 2021<br>
+                  BE in Software Engineering
+                </p>
+              </div>
+            </section>
+
+            <!-- Experience：BE 下 0.3in -->
+            <section class="m-exp">
+              <div class="m-h">Experience</div>
+              <div class="m-block">
+                <p>
+                  Shanghai Dagong Auction Co., Ltd.<br>
+                  Apr. 2024 - Aug. 2024<br>
+                  Director of Online Auction<br><br>
+
+                  Shanghai Cangyuan Industrial Co., Ltd.<br>
+                  Jan. 2024 - Apr. 2024<br>
+                  Japanese Translation Intern<br><br>
+
+                  Beijing Science and Technology Publishing Co., Ltd.<br>
+                  Oct. 2023 - Dec. 2023<br>
+                  Editorial Intern, Children's Department<br><br>
+
+                  Shanghai Soar Information Technology Co., Ltd.<br>
+                  Oct. 2021 - Dec. 2021<br>
+                  Japanese Language Intern<br><br>
+
+                  Shanghai Fuao Construction Technology Co., Ltd.<br>
+                  Sep. 2020 - Dec. 2020<br>
+                  Frontend Intern<br><br>
+
+                  Shanghai Fanhua Auction Co., Ltd.<br>
+                  Jul. 2017 - Aug. 2017<br>
+                  Intern Supervisor
+                </p>
+              </div>
+            </section>
+
+            <!-- Language：Intern Supervisor 下 0.3in -->
+            <section class="m-lang">
+              <div class="m-h">Language</div>
+              <div class="m-block">
+                <p>
+                  Mandarin (Native)<br>
+                  English (Advanced)<br>
+                  Japanese (Advanced)
+                </p>
+              </div>
+            </section>
+
+            <!-- ✅ 空白占位：就在 footer 上边（和你其他页面一致） -->
+            <div class="end-spacer"></div>
+
+            <footer class="m-footer">
+              Mabel Chen © 2026
+            </footer>
+
           </div>
-
-          <p class="about-bio">
-            My name is Mabel.<br>I am a designer interested in systems, narratives, and the emotional traces embedded in
-            everyday life.<br>My work often begins with close observation of objects, environments, and behaviors and
-            translates these findings into visual forms and interactive experiences. Through research-driven design, I
-            explore how structure, memory, and interaction shape the way people perceive and engage with the world
-            around them.
-          </p>
-
-          <div class="about-photo-right">
-            <img src="./images/about_02.JPG" alt="Portrait 02">
-          </div>
-
-          <!-- Row 2 -->
-          <div class="about-links">
-            <a href="mailto:aestatis511@gmail.com">aestatis511@gmail.com</a>
-                        <a href="https://www.linkedin.com/in/mabel-chen-61757a385/" target="_blank"
-                            rel="noopener">LinkedIn</a>
-                        <a href="https://www.instagram.com/aestatis_mare?igsh=OGQ5ZDc2ODk2ZA==" target="_blank"
-                            rel="noopener">Instagram</a>
-                        <a class="resume-hover" href="mailto:aestatis511@gmail.com?subject=Resume Request">
-                            Resume <span class="resume-tip">Available Upon Request</span>
-                        </a>
-          </div>
-
-          <div class="about-edu">
-            <div class="about-h">Education</div>
-
-            ArtCenter College of Design<br>
-            Sep. 2025 - July. 2027<br>
-            MFA in Graphic Design<br><br>
-
-            Peking University<br>
-            Sep. 2022 - July. 2024<br>
-            MTI in Japanese Translation<br><br>
-
-            East China Normal University<br>
-            Sep. 2017 - July. 2021<br>
-            BE in Software Engineering<br><br><br>
-
-                        <div class="about-h">Language</div>
-                        Mandarin (Native)<br>
-                        English (Advanced)<br>
-                        Japanese (Advanced)
-          </div>
-
-          <div class="about-exp">
-            <div class="about-h">Experience</div>
-
-            Shanghai Dagong Auction Co., Ltd.<br>
-            Apr. 2024 - Aug. 2024<br>
-            Director of Online Auction<br><br>
-
-            Shanghai Cangyuan Industrial Co., Ltd.<br>
-            Jan. 2024 - Apr. 2024<br>
-            Japanese Translation Intern<br><br>
-
-            Beijing Science and Technology Publishing Co., Ltd.<br>
-            Oct. 2023 - Dec. 2023<br>
-            Editorial Intern, Children's Department<br><br>
-
-            Shanghai Soar Information Technology Co., Ltd.<br>
-            Oct. 2021 - Dec. 2021<br>
-            Japanese Language Intern<br><br>
-
-            Shanghai Fuao Construction Technology Co., Ltd.<br>
-            Sep. 2020 - Dec. 2020<br>
-            Frontend Intern<br><br>
-
-            Shanghai Fanhua Auction Co., Ltd.<br>
-            Jul. 2017 - Aug. 2017<br>
-            Intern Supervisor
-          </div>
-
-          <div class="about-photo-right second">
-            <img src="./images/about_03.jpeg" alt="Portrait 03">
-          </div>
-
-        </main>
-
-        <footer class="bottom">
-          <div class="footer-inner">Mabel Chen © 2026</div>
-        </footer>
-
+        </div>
       </div>
+
     </div>
   </div>
 
+  <!-- 继续用你现有的 desktop + mobile scale.js -->
   <script src="./scale.js"></script>
 </body>
+
 </html>
