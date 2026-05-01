@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>PROXIMITY</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #111; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; font-family: monospace; }
+canvas { display: block; width: 960px; height: 540px; border: 1px solid #333; }
+#controls { margin-top: 14px; display: flex; gap: 12px; align-items: center; }
+button {
+  background: transparent; color: #ccc; border: 1px solid #555;
+  padding: 6px 16px; font-family: monospace; font-size: 12px;
+  cursor: pointer; border-radius: 4px;
+}
+button:hover { border-color: #aaa; color: #fff; }
+button.active { border-color: #e05; color: #e05; }
+#status { color: #666; font-size: 12px; min-width: 200px; }
+#progress-wrap { width: 200px; height: 4px; background: #333; border-radius: 2px; display: none; }
+#progress-bar { height: 100%; background: #e05; border-radius: 2px; width: 0%; transition: width 0.1s; }
+</style>
+</head>
+<body>
+
+<canvas id="c" width="1920" height="1080"></canvas>
+
+<div id="controls">
+  <button id="btnPlay">pause</button>
+  <button id="btnRec">record 20s</button>
+  <span id="status">running</span>
+  <div id="progress-wrap"><div id="progress-bar"></div></div>
+</div>
+
+<script>
+const W = 1920, H = 1080;
+const canvas = document.getElementById('c');
+const ctx = canvas.getContext('2d');
+
+const FPS        = 60;
+const DURATION   = 20;       // seconds total loop
+const TAIL_SEC   = 5;        // seconds a trail stays visible
+const N          = 280;      // number of particles
+const SPEED      = 3.2;      // base speed (full res px/frame)
+const DOT_R      = 2.5;       // dot radius px
+const LINE_W     = 0.8;      // trail line width px
+const TAIL_FRAMES = TAIL_SEC * FPS;
+
+class Particle {
+  constructor() { this.reset(true); }
+
+  reset(init) {
+    this.x  = Math.random() * W;
+    this.y  = Math.random() * H;
+    this.tx = Math.random() * W;
+    this.ty = Math.random() * H;
+    const a = Math.random() * Math.PI * 2;
+    const s = SPEED * (0.6 + Math.random() * 0.7);
+    this.vx = Math.cos(a) * s;
+    this.vy = Math.sin(a) * s;
+    this.trail = [];          // [{x,y,frame}]
+    this.r  = Math.floor(180 + Math.random() * 75);
+    this.g  = Math.floor(Math.random() * 45);
+    this.b  = Math.floor(Math.random() * 20);
+    if (init) {
+      // stagger starting positions across loop for seamless start
+      const f = Math.floor(Math.random() * DURATION * FPS);
+      for (let i = 0; i < f; i++) this._step(i);
+    }
+  }
+
+  _step(frame) {
+    this.trail.push({ x: this.x, y: this.y, frame });
+    // drift toward target with small noise
+    const dx = this.tx - this.x, dy = this.ty - this.y;
+    const d  = Math.sqrt(dx*dx + dy*dy);
+    if (d < 8) {
+      // pick new target
+      this.tx = Math.random() * W;
+      this.ty = Math.random() * H;
+    }
+    // steer gently
+    // straight line: no noise, constant velocity
+    const spd = Math.sqrt(this.vx*this.vx + this.vy*this.vy);
+    if (spd > 0) { this.vx = this.vx/spd * SPEED; this.vy = this.vy/spd * SPEED; }
+    this.x += this.vx;
+    this.y += this.vy;
+    // bounce
+    if (this.x < 0)  { this.x = 0;  this.vx *= -1; }
+    if (this.x > W)  { this.x = W;  this.vx *= -1; }
+    if (this.y < 0)  { this.y = 0;  this.vy *= -1; }
+    if (this.y > H)  { this.y = H;  this.vy *= -1; }
+  }
+
+  update(frame) {
+    this._step(frame);
+    // cull old trail points
+    while (this.trail.length > 0 && frame - this.trail[0].frame > TAIL_FRAMES)
+      this.trail.shift();
+  }
+
+  draw(frame) {
+    if (this.trail.length < 2) return;
+    for (let i = 1; i < this.trail.length; i++) {
+      const age   = frame - this.trail[i].frame;
+      const alpha = Math.max(0, 1 - age / TAIL_FRAMES);
+      ctx.beginPath();
+      ctx.moveTo(this.trail[i-1].x, this.trail[i-1].y);
+      ctx.lineTo(this.trail[i].x,   this.trail[i].y);
+      ctx.strokeStyle = `rgba(${this.r},${this.g},${this.b},${(alpha * 0.85).toFixed(3)})`;
+      ctx.lineWidth   = LINE_W;
+      ctx.lineCap     = 'round';
+      ctx.stroke();
+    }
+    // dot
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, DOT_R, 0, Math.PI * 2);
+    ctx.fillStyle = '#000';
+    ctx.fill();
+  }
+}
+
+const particles = Array.from({ length: N }, () => new Particle());
+let frame = 0;
+let paused = false;
+let rafId  = null;
+
+function render() {
+  ctx.fillStyle = '#ffffff';
+  ctx.fillRect(0, 0, W, H);
+  for (const p of particles) {
+    p.update(frame);
+    p.draw(frame);
+  }
+  frame++;
+  // seamless loop: reset frame counter at DURATION*FPS
+  if (frame >= DURATION * FPS) frame = 0;
+}
+
+function loop() {
+  if (!paused) render();
+  rafId = requestAnimationFrame(loop);
+}
+loop();
+
+document.getElementById('btnPlay').addEventListener('click', function() {
+  paused = !paused;
+  this.textContent = paused ? 'play' : 'pause';
+});
+
+// ── Video recording via MediaRecorder ──────────────────
+const btnRec   = document.getElementById('btnRec');
+const statusEl = document.getElementById('status');
+const progWrap = document.getElementById('progress-wrap');
+const progBar  = document.getElementById('progress-bar');
+let recording  = false;
+
+btnRec.addEventListener('click', () => {
+  if (recording) return;
+  recording = true;
+  btnRec.classList.add('active');
+  btnRec.textContent = 'recording…';
+  progWrap.style.display = 'block';
+  statusEl.textContent = 'recording 20s…';
+
+  // reset to frame 0 for a clean loop
+  frame = 0;
+  paused = false;
+
+  const stream   = canvas.captureStream(FPS);
+  const mimeType = MediaRecorder.isTypeSupported('video/mp4;codecs=avc1')
+    ? 'video/mp4;codecs=avc1'
+    : MediaRecorder.isTypeSupported('video/mp4')
+    ? 'video/mp4'
+    : 'video/webm';
+  const recorder = new MediaRecorder(stream, { mimeType, videoBitsPerSecond: 12_000_000 });
+  const chunks   = [];
+
+  recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+  recorder.onstop = () => {
+    const blob = new Blob(chunks, { type: mimeType });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    const ext = mimeType.includes('mp4') ? 'mp4' : 'webm';
+    a.download = 'proximity_loop.' + ext;
+    a.click();
+    URL.revokeObjectURL(url);
+    recording = false;
+    btnRec.classList.remove('active');
+    btnRec.textContent = 'record 20s';
+    progWrap.style.display = 'none';
+    progBar.style.width = '0%';
+    statusEl.textContent = 'saved proximity_loop.' + ext;
+  };
+
+  recorder.start(100);
+  const totalFrames = DURATION * FPS;
+  let   recFrame    = 0;
+
+  // drive recording frame by frame at exact FPS
+  cancelAnimationFrame(rafId);
+  function recLoop() {
+    render();
+    recFrame++;
+    progBar.style.width = Math.round(recFrame / totalFrames * 100) + '%';
+    statusEl.textContent = `recording… ${Math.round(recFrame/FPS)}s / ${DURATION}s`;
+    if (recFrame < totalFrames) {
+      rafId = requestAnimationFrame(recLoop);
+    } else {
+      recorder.stop();
+      rafId = requestAnimationFrame(loop);
+    }
+  }
+  rafId = requestAnimationFrame(recLoop);
+});
+</script>
+</body>
+</html>
