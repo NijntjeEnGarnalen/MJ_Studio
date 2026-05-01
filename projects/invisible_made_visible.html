@@ -1,0 +1,323 @@
+<!doctype html>
+
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Invisible Made Visible 2026 — MJ Studio</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="icon" href="../favicon.ico">
+
+  <style>
+    body {
+      background: #000000;
+    }
+
+    .project-main,
+    .project-main *,
+    .bottom,
+    .bottom *,
+    .proj-side,
+    .proj-side * {
+      color: #f9f9f9 !important;
+      -webkit-text-fill-color: #f9f9f9 !important;
+    }
+
+    /* ✅ video 宽度与图片一致 */
+    .proj-media video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .desktop-only { display: block; }
+    .mobile-only  { display: none; }
+
+    @media (max-width: 768px) {
+      .desktop-only { display: none; }
+      .mobile-only  { display: block; }
+
+      .mobile-scroll{
+        width: 100%;
+        min-height: 100vh;
+        overflow-y: auto;
+        background: #000000;
+      }
+
+      .mobile-scale-wrap{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      #mobileArtboard{
+        width: 4in;
+        height: auto;
+        transform-origin: top left;
+      }
+
+      .mobile-page{
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.25in 0.125in;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .m-topbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .m-brand a,
+      .m-about a{
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 10pt;
+        line-height: 10pt;
+        color: #ff2aa1;
+        text-decoration: none;
+      }
+
+      .m-proj-meta{
+        margin-top: 0.3in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #f9f9f9;
+      }
+
+      .m-proj-stack{
+        margin-top: 0.072in;
+      }
+
+      .m-proj-stack img,
+      .m-proj-stack video{
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .m-proj-stack img + img,
+      .m-proj-stack img + video,
+      .m-proj-stack video + img,
+      .m-proj-stack video + video{
+        margin-top: 0.072in;
+      }
+
+      .m-proj-desc{
+        margin-top: 0.072in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 7pt;
+        line-height: 9pt;
+        color: #f9f9f9;
+      }
+
+      .m-proj-desc p{ margin: 0; }
+
+      .m-footer{
+        margin-top: 0.5in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #f9f9f9;
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div class="desktop-only">
+
+```
+<div class="top-fixed" id="topFixed">
+  <header class="top">
+    <div class="brand">
+      <a href="../index.html">MJ Studio</a>
+    </div>
+    <nav class="topnav">
+      <a class="index" href="../list.html">Index</a>
+      <a class="work" href="../index.html">Work</a>
+      <a class="about" href="../about.html">About</a>
+    </nav>
+  </header>
+</div>
+
+<div class="top-spacer" id="topSpacer"></div>
+
+<div class="stage">
+  <div class="page-sizer" id="pageSizer">
+    <div class="page" id="page">
+
+      <main class="project-main">
+
+        <section class="project-hero">
+          <div class="proj-media">
+            <img src="../images/invisible_made_visible/IMV_01.png">
+          </div>
+
+          <div class="proj-side">
+            <div class="proj-title">Invisible Made Visible</div>
+            <div class="proj-sub">Exhibition Design, 2026</div>
+            <div class="proj-sub">Special Thanks to Tyrone Drake</div>
+          </div>
+        </section>
+
+        <section class="proj-media-stack">
+
+          <div class="proj-media"><img src="../images/invisible_made_visible/IMV_02.png"></div>
+          <div class="proj-media"><img src="../images/invisible_made_visible/IMV_03.png"></div>
+          <div class="proj-media"><img src="../images/invisible_made_visible/IMV_04.png"></div>
+
+          <div class="proj-media"><video src="../images/invisible_made_visible/IMV_01.mp4" autoplay muted loop playsinline></video></div>
+          <div class="proj-media"><video src="../images/invisible_made_visible/IMV_02.mp4" autoplay muted loop playsinline></video></div>
+          <div class="proj-media"><video src="../images/invisible_made_visible/IMV_03.mp4" autoplay muted loop playsinline></video></div>
+
+          <div class="proj-media"><img src="../images/invisible_made_visible/IMV_05.png"></div>
+          <div class="proj-media"><video src="../images/invisible_made_visible/IMV_04.mp4" autoplay muted loop playsinline></video></div>
+
+          <div class="proj-media"><img src="../images/invisible_made_visible/IMV_06.png"></div>
+
+          <div class="proj-media"><video src="../images/invisible_made_visible/IMV_05.mp4" autoplay muted loop playsinline></video></div>
+          <div class="proj-media"><video src="../images/invisible_made_visible/IMV_06.mp4" autoplay muted loop playsinline></video></div>
+          <div class="proj-media"><video src="../images/invisible_made_visible/IMV_07.mp4" autoplay muted loop playsinline></video></div>
+
+          <div class="proj-media"><img src="../images/invisible_made_visible/IMV_07.png"></div>
+          <div class="proj-media"><img src="../images/invisible_made_visible/IMV_08.png"></div>
+          <div class="proj-media"><img src="../images/invisible_made_visible/IMV_09.png"></div>
+          <div class="proj-media"><img src="../images/invisible_made_visible/IMV_10.png"></div>
+          <div class="proj-media"><img src="../images/invisible_made_visible/IMV_11.png"></div>
+          <div class="proj-media"><img src="../images/invisible_made_visible/IMV_12.png"></div>
+          <div class="proj-media"><img src="../images/invisible_made_visible/IMV_13.png"></div>
+          <div class="proj-media"><img src="../images/invisible_made_visible/IMV_14.png"></div>
+          <div class="proj-media"><img src="../images/invisible_made_visible/IMV_15.png"></div>
+
+          <div class="proj-media"><video src="../images/invisible_made_visible/IMV_08.mp4" autoplay muted loop playsinline></video></div>
+          <div class="proj-media"><video src="../images/invisible_made_visible/IMV_09.mp4" autoplay muted loop playsinline></video></div>
+
+        </section>
+
+        <section class="proj-text">
+          <p>Invisible Made Visible explores the paradox of connection within dense urban environments. 
+              It visualizes how structured systems, architecture, information, and proximity, shape 
+              human relationships, while simultaneously producing isolation. Through a series of 
+              spatial and visual narratives, invisible conditions such as distance, distortion, 
+              and emotional detachment are translated into tangible forms. Order gradually 
+              shifts into accumulation, then into noise, where clarity dissolves and meaning 
+              becomes unstable. What appears as connection begins to fragment. What is visible 
+              no longer guarantees understanding. By making the invisible visible, the project 
+              reveals a critical tension: in a world of constant proximity, true connection 
+              becomes increasingly fragile.</p>
+          <div class="end-spacer"></div>
+        </section>
+
+      </main>
+
+      <footer class="bottom">
+        Mabel Chen © 2026
+      </footer>
+
+    </div>
+  </div>
+</div>
+
+
+  </div>
+
+  <div class="mobile-only">
+    <div class="mobile-scroll">
+      <div class="mobile-scale-wrap">
+        <div class="mobile-artboard">
+          <div class="mobile-page">
+
+```
+        <header class="m-topbar">
+          <div class="m-brand"><a href="../index.html">MJ Studio</a></div>
+          <div class="m-about"><a href="../about.html">About</a></div>
+        </header>
+
+        <div class="m-proj-meta">
+          <div>Invisible Made Visible, 2026</div>
+          <div>Exhibition Design</div>
+          <div>Special Thanks to Tyrone Drake</div>
+        </div>
+
+        <section class="m-proj-stack">
+
+          <img src="../images/invisible_made_visible/IMV_01.png">
+          <video src="../images/invisible_made_visible/IMV_01.mp4" autoplay muted loop playsinline></video>
+
+          <img src="../images/invisible_made_visible/IMV_02.png">
+          <video src="../images/invisible_made_visible/IMV_02.mp4" autoplay muted loop playsinline></video>
+
+          <img src="../images/invisible_made_visible/IMV_03.png">
+          <video src="../images/invisible_made_visible/IMV_03.mp4" autoplay muted loop playsinline></video>
+
+          <img src="../images/invisible_made_visible/IMV_04.png">
+          <img src="../images/invisible_made_visible/IMV_05.png">
+          <video src="../images/invisible_made_visible/IMV_04.mp4" autoplay muted loop playsinline></video>
+
+          <img src="../images/invisible_made_visible/IMV_06.png">
+
+          <video src="../images/invisible_made_visible/IMV_05.mp4" autoplay muted loop playsinline></video>
+          <video src="../images/invisible_made_visible/IMV_06.mp4" autoplay muted loop playsinline></video>
+          <video src="../images/invisible_made_visible/IMV_07.mp4" autoplay muted loop playsinline></video>
+
+          <img src="../images/invisible_made_visible/IMV_07.png">
+          <img src="../images/invisible_made_visible/IMV_08.png">
+          <img src="../images/invisible_made_visible/IMV_09.png">
+          <img src="../images/invisible_made_visible/IMV_10.png">
+          <img src="../images/invisible_made_visible/IMV_11.png">
+          <img src="../images/invisible_made_visible/IMV_12.png">
+          <img src="../images/invisible_made_visible/IMV_13.png">
+          <img src="../images/invisible_made_visible/IMV_14.png">
+          <img src="../images/invisible_made_visible/IMV_15.png">
+
+          <video src="../images/invisible_made_visible/IMV_08.mp4" autoplay muted loop playsinline></video>
+          <video src="../images/invisible_made_visible/IMV_09.mp4" autoplay muted loop playsinline></video>
+
+        </section>
+
+        <!-- description：同网页版文案，7pt/9pt -->
+            <section class="m-proj-desc">
+              <p>
+                Invisible Made Visible explores the paradox of connection within dense urban environments. 
+              It visualizes how structured systems, architecture, information, and proximity, shape 
+              human relationships, while simultaneously producing isolation. Through a series of 
+              spatial and visual narratives, invisible conditions such as distance, distortion, 
+              and emotional detachment are translated into tangible forms. Order gradually 
+              shifts into accumulation, then into noise, where clarity dissolves and meaning 
+              becomes unstable. What appears as connection begins to fragment. What is visible 
+              no longer guarantees understanding. By making the invisible visible, the project 
+              reveals a critical tension: in a world of constant proximity, true connection 
+              becomes increasingly fragile.
+
+              </p>
+            </section>
+           
+        <div class="end-spacer"></div>
+        <footer class="m-footer">Mabel Chen © 2026</footer>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </div>
+
+  <script src="../scale.js"></script>
+
+</body>
+</html>
+
+              
+              
+            
