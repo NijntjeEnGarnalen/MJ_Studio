@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mori Research — MJ Studio</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="icon" href="../favicon.ico">
+
+  <style>
+    body {
+      background: #eae9d7;
+    }
+
+    .project-main,
+    .project-main *,
+    .bottom,
+    .bottom * {
+      color: #546442 !important;
+      -webkit-text-fill-color: #546442 !important;
+    }
+
+    .desktop-only { display: block; }
+    .mobile-only { display: none; }
+
+    .project-main {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+      max-width: none !important;
+      overflow: visible !important;
+    }
+
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      align-items: start;
+      margin-top: 0;
+      width: 100%;
+    }
+
+    .research-grid img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .desktop-only { display: none; }
+      .mobile-only { display: block; }
+
+      html,
+      body {
+        height: auto !important;
+        min-height: 0 !important;
+        overflow-x: hidden;
+      }
+
+      .mobile-page {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.25in 0.125in 0.18in;
+        background: #eae9d7;
+      }
+
+      .m-topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .m-topbar a {
+        font-family: "Albert Sans", system-ui, sans-serif;
+        font-weight: 700;
+        font-size: 10pt;
+        line-height: 10pt;
+        color: #ff2aa1;
+        text-decoration: none;
+      }
+
+      .m-research-grid {
+        margin-top: 0.3in;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.072in;
+      }
+
+      .m-research-grid img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+
+      .mobile-page .end-spacer {
+        height: 0.25in;
+      }
+
+      .m-footer {
+        margin-top: 0.25in;
+        font-family: "Albert Sans", system-ui, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #546442;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="desktop-only">
+
+    <div class="top-fixed" id="topFixed">
+      <header class="top">
+        <div class="brand">
+          <a href="../index.html">MJ Studio</a>
+        </div>
+        <nav class="topnav">
+          <a class="index" href="../list.html">Index</a>
+          <a class="work" href="../index.html">Work</a>
+          <a class="about" href="../about.html">About</a>
+        </nav>
+      </header>
+    </div>
+
+    <div class="top-spacer" id="topSpacer"></div>
+
+    <div class="stage">
+      <div class="page-sizer" id="pageSizer">
+        <div class="page" id="page">
+
+          <main class="project-main" id="projectMain">
+            <section class="research-grid" id="researchGrid"></section>
+          </main>
+
+          <footer class="bottom">
+            Mabel Chen © 2026
+          </footer>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="mobile-only">
+    <div class="mobile-page">
+
+      <header class="m-topbar">
+        <a href="../index.html">MJ Studio</a>
+        <a href="../about.html">About</a>
+      </header>
+
+      <section class="m-research-grid" id="mobileResearchGrid"></section>
+
+      <div class="end-spacer"></div>
+      <div class="end-spacer"></div>
+      <div class="end-spacer"></div>
+
+      <footer class="m-footer">
+        Mabel Chen © 2026
+      </footer>
+
+    </div>
+  </div>
+
+  <script src="../scale.js"></script>
+
+  <script>
+    const desktopGrid = document.getElementById("researchGrid");
+    const mobileGrid = document.getElementById("mobileResearchGrid");
+
+    for (let i = 1; i <= 56; i++) {
+      const fileName = i === 1 ? "deck.jpg" : `deck${i}.jpg`;
+
+      const img = document.createElement("img");
+      img.src = `../images/mori_deck/${fileName}`;
+      img.alt = `Mori Research Deck ${i}`;
+      desktopGrid.appendChild(img);
+
+      const mobileImg = img.cloneNode();
+      mobileGrid.appendChild(mobileImg);
+    }
+
+    function alignResearchGrid() {
+      const page = document.getElementById("page");
+      const projectMain = document.getElementById("projectMain");
+      const grid = document.getElementById("researchGrid");
+      const brand = document.querySelector(".brand a");
+      const about = document.querySelector(".topnav .about");
+
+      if (!page || !projectMain || !grid || !brand || !about) return;
+
+      grid.style.marginLeft = "0px";
+      grid.style.width = "100%";
+
+      const pageRect = page.getBoundingClientRect();
+      const mainRect = projectMain.getBoundingClientRect();
+      const brandRect = brand.getBoundingClientRect();
+      const aboutRect = about.getBoundingClientRect();
+
+      const scale = pageRect.width / page.offsetWidth;
+
+      const left = (brandRect.left - mainRect.left) / scale;
+      const width = (aboutRect.right - brandRect.left) / scale;
+
+      grid.style.marginLeft = left + "px";
+      grid.style.width = width + "px";
+    }
+
+    function refreshLayout() {
+      requestAnimationFrame(() => {
+        alignResearchGrid();
+        setTimeout(alignResearchGrid, 100);
+        setTimeout(alignResearchGrid, 300);
+        setTimeout(alignResearchGrid, 600);
+      });
+    }
+
+    window.addEventListener("load", refreshLayout);
+    window.addEventListener("resize", refreshLayout);
+  </script>
+
+</body>
+
+</html>
