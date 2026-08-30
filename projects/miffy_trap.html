@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Miffy Trap — MC Studio</title>
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="icon" href="../favicon.ico">
+
+  <style>
+    body { background: #ebb8d6; }
+
+    /* =========================
+       MOBILE：仅手机端生效（按你既定规范）
+       + 空白 end-spacer 放在 footer 上边
+       ========================= */
+    .desktop-only { display: block; }
+    .mobile-only  { display: none; }
+
+    @media (max-width: 768px) {
+      .desktop-only { display: none; }
+      .mobile-only  { display: block; }
+
+      .mobile-scroll{
+        width: 100%;
+        min-height: 100vh;
+        overflow-y: auto;
+        background: #ebb8d6;
+      }
+
+      .mobile-scale-wrap{
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+      }
+
+      #mobileArtboard{
+        width: 4in;
+        height: auto;
+        transform-origin: top left;
+      }
+
+      .mobile-page{
+        width: 100%;
+        box-sizing: border-box;
+        padding: 0.25in 0.125in;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .m-topbar{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+
+      .m-brand a,
+      .m-about a{
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 700;
+        font-size: 10pt;
+        line-height: 10pt;
+        color: #ff2aa1;
+        text-decoration: none;
+      }
+
+      /* meta 起始高度 = 手机主页首图高度 */
+      .m-proj-meta{
+        margin-top: 0.3in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #111;
+      }
+
+      .m-proj-stack{
+        margin-top: 0.072in;
+      }
+
+      .m-proj-stack img{
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .m-proj-stack img + img{
+        margin-top: 0.072in;
+      }
+
+      .m-proj-desc{
+        margin-top: 0.072in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 7pt;
+        line-height: 9pt;
+        color: #111;
+      }
+      .m-proj-desc p{ margin: 0; }
+      .m-proj-desc p + p{ margin-top: 0.072in; } /* 多段落节奏按系统间距 */
+
+      .m-proj-desc strong{
+        font-weight: 700;
+      }
+
+      .m-footer{
+        margin-top: 0.5in;
+        font-family: "Albert Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-weight: 400;
+        font-size: 8pt;
+        line-height: 10pt;
+        color: #111;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ===================== -->
+  <!-- DESKTOP：原网页版（不动） -->
+  <!-- ===================== -->
+  <div class="desktop-only">
+
+    <div class="top-fixed" id="topFixed">
+      <header class="top">
+        <div class="brand">
+          <a href="../index.html">MJ Studio</a>
+        </div>
+        <nav class="topnav">
+          <a class="index" href="../list.html">Index</a>
+          <a class="work" href="../index.html">Work</a>
+          <a class="about" href="../about.html">About</a>
+        </nav>
+      </header>
+    </div>
+
+    <div class="top-spacer" id="topSpacer"></div>
+
+    <div class="stage">
+      <div class="page-sizer" id="pageSizer">
+        <div class="page" id="page">
+
+          <main class="project-main">
+
+            <section class="project-hero">
+
+              <div class="proj-media">
+                <img src="../images/miffy_trap/MT_01.png" alt="Miffy Trap Image 01">
+              </div>
+
+              <div class="proj-side">
+                <div class="proj-title">Miffy Trap</div>
+                <div class="proj-sub">Font Design, 2026</div>
+                <div class="proj-sub">Special Thanks to Hampton Dunlap</div>
+              </div>
+
+            </section>
+
+            <section class="proj-media-stack">
+
+              <div class="proj-media"><img src="../images/miffy_trap/MT_02.jpg" alt="Miffy Trap Image 02"></div>
+              <div class="proj-media"><img src="../images/miffy_trap/MT_03.jpg" alt="Miffy Trap Image 03"></div>
+              <div class="proj-media"><img src="../images/miffy_trap/MT_04.png" alt="Miffy Trap Image 04"></div>
+              <div class="proj-media"><img src="../images/miffy_trap/MT_05.png" alt="Miffy Trap Image 05"></div>
+              <div class="proj-media"><img src="../images/miffy_trap/MT_06.png" alt="Miffy Trap Image 06"></div>
+            </section>
+
+            <section class="proj-text">
+              
+              <p>
+                Miffy Trap is a contemporary sans serif defined by consistent strokes, open forms, and distinctive ink traps. Its clean structure is interrupted by sharp cuts, creating a balance between clarity and character. Designed to feel functional yet slightly unconventional, the typeface reveals more of its personality at larger scales.
+              
+              </p>
+
+              <div class="end-spacer"></div>
+            </section>
+
+          </main>
+
+          <footer class="bottom">
+            Mabel Chen © 2026
+          </footer>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ===================== -->
+  <!-- MOBILE：按你既定规范新增（空白 end-spacer 在 footer 上边） -->
+  <!-- ===================== -->
+  <div class="mobile-only">
+    <div class="mobile-scroll">
+
+      <div class="mobile-scale-wrap" id="mobileScaleWrap">
+        <div class="mobile-artboard" id="mobileArtboard" data-artboard-w="4">
+          <div class="mobile-page">
+
+            <header class="m-topbar">
+              <div class="m-brand"><a href="../index.html">MC Studio</a></div>
+              <div class="m-about"><a href="../about.html">About</a></div>
+            </header>
+
+            <div class="m-proj-meta">
+              <div>Miffy Trap, 2026</div>
+              <div>Font Design</div>
+              <div>Special Thanks to Hampton Dunlap</div>
+            </div>
+
+            <section class="m-proj-stack">
+              <img src="../images/miffy_trap/MT_01.png" alt="Miffy Trap Image 01">
+              <img src="../images/miffy_trap/MT_02.jpg" alt="Miffy Trap Image 02">
+              <img src="../images/miffy_trap/MT_03.jpg" alt="Miffy Trap Image 03">
+              <img src="../images/miffy_trap/MT_04.png" alt="Miffy Trap Image 04">
+              <img src="../images/miffy_trap/MT_05.png" alt="Miffy Trap Image 05">
+              <img src="../images/miffy_trap/MT_06.png" alt="Miffy Trap Image 06">
+                        </section>
+
+            <section class="m-proj-desc">
+             
+              <p>
+                Miffy Trap is a contemporary sans serif defined by consistent strokes, open forms, and distinctive ink traps. Its clean structure is interrupted by sharp cuts, creating a balance between clarity and character. Designed to feel functional yet slightly unconventional, the typeface reveals more of its personality at larger scales.
+              </p>
+
+              
+            </section>
+
+            <!-- ✅ 空白占位：就在 footer 上边 -->
+            <div class="end-spacer"></div>
+
+            <footer class="m-footer">
+              Mabel Chen © 2026
+            </footer>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="../scale.js"></script>
+</body>
+
+</html>
